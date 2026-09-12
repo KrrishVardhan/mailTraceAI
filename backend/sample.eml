@@ -1,0 +1,38 @@
+Delivered-To: victim@example.com
+Received: by 2002:a05:6a20:9e26:b0:1a0:1234:5678 with SMTP id abc123;
+        Tue, 09 Sep 2025 08:15:22 -0700 (PDT)
+X-Received: by 2002:a17:907:1234:b0:1a0:5678:9012 with SMTP id x18-20020a170907;
+        Tue, 09 Sep 2025 08:15:21 -0700 (PDT)
+Received: from mail-relay-3.suspicious-host.net (mail-relay-3.suspicious-host.net. [185.220.101.45])
+        by mx.google.com with ESMTPS id y10-20020a170902b48a00b00 for <victim@example.com>;
+        Tue, 09 Sep 2025 08:15:21 -0700 (PDT)
+Received: from smtp-out.freehosting-mail.com (smtp-out.freehosting-mail.com [45.142.212.99])
+        by mail-relay-3.suspicious-host.net with SMTP id q7;
+        Tue, 09 Sep 2025 15:15:18 +0000
+Received: from [103.216.220.7] (unknown [103.216.220.7])
+        by smtp-out.freehosting-mail.com with ESMTP id z9;
+        Tue, 09 Sep 2025 15:15:10 +0000
+Authentication-Results: mx.google.com;
+       dkim=fail (signature did not verify) header.i=@paypal-secure-alert.com;
+       spf=softfail (google.com: domain of transitioning support@paypal-secure-alert.com does not designate 103.216.220.7 as permitted sender) smtp.mailfrom=support@paypal-secure-alert.com;
+       dmarc=fail (p=REJECT sp=REJECT dis=NONE) header.from=paypal-secure-alert.com
+Return-Path: <support@paypal-secure-alert.com>
+From: "PayPal Security" <support@paypal-secure-alert.com>
+To: victim@example.com
+Reply-To: paypal.recovery.team@protonmail.com
+Subject: Urgent: Unusual Activity Detected on Your Account
+Date: Tue, 09 Sep 2025 15:15:05 +0000
+Message-ID: <a1b2c3d4e5f6@freehosting-mail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+Dear Customer,
+
+We have detected unusual activity on your account. Please verify your
+identity immediately by clicking the link below or your account will
+be suspended within 24 hours.
+
+http://paypal-secure-verify.tk/login?id=8827321
+
+Thank you,
+PayPal Security Team
