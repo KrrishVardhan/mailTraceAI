@@ -16,6 +16,20 @@ export interface GeolocationResult {
   as?: string;
   proxy?: boolean;
   hosting?: boolean;
+  masking?: {
+    likely_masked: boolean;
+    note: string | null;
+  };
+}
+
+export interface SenderTimezone {
+  utc_offset: string;
+  plausible_regions: string[];
+}
+
+export interface OriginAssessment {
+  verdict: string;
+  confidence: "high" | "medium" | "low" | "none";
 }
 
 export interface AnalysisResult {
@@ -39,8 +53,10 @@ export interface AnalysisResult {
   }[];
   probable_origin_ips: string[];
   red_flags: string[];
+  sender_timezone: SenderTimezone | null;
   geolocation: GeolocationResult[];
   geolocation_error?: string;
+  origin_assessment?: OriginAssessment;
 }
 
 export async function analyzeEmail(file: File): Promise<AnalysisResult> {

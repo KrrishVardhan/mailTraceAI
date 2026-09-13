@@ -21,6 +21,9 @@ import {
   Loader2,
   Mail,
   CornerDownRight,
+  Compass,
+  Clock,
+  Info,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -58,6 +61,19 @@ function riskStyle(risk: string) {
     cls: "text-green-600 dark:text-green-400 bg-green-500/10 border-green-500/30",
     pulse: false,
   }
+}
+
+// Confidence styling for the Origin Assessment panel — reuses the same
+// visual language as risk badges (green/yellow/destructive/muted) so it
+// reads as part of the same system rather than a one-off.
+function confidenceStyle(confidence: string) {
+  if (confidence === "high")
+    return "text-green-600 dark:text-green-400 bg-green-500/10 border-green-500/25"
+  if (confidence === "medium")
+    return "text-yellow-600 dark:text-yellow-400 bg-yellow-500/10 border-yellow-500/25"
+  if (confidence === "low")
+    return "text-orange-600 dark:text-orange-400 bg-orange-500/10 border-orange-500/25"
+  return "text-muted-foreground bg-muted border-border"
 }
 
 // Compact titled panel — replaces shadcn Card so we control padding tightly
@@ -410,6 +426,51 @@ export default function App() {
               </Panel>
             </AnimatedContent>
           )}
+
+          {/* Origin Assessment — synthesizes geolocation + timezone into
+              one verdict with a confidence level, rather than leaving the
+              user to mentally reconcile a masked IP against a timezone hint
+              themselves. */}
+          {result && result.origin_assessment && (
+            <AnimatedContent
+              distance={20}
+              direction="horizontal"
+              reverse
+              duration={0.4}
+              delay={0.2}
+              threshold={0}
+            >
+              <Panel
+                title="Origin Assessment"
+                icon={<Compass className="h-3.5 w-3.5" />}
+                className="flex-none"
+              >
+                <div className="space-y-2">
+                  <span
+                    className={cn(
+                      "inline-flex items-center gap-1.5 rounded-none border px-2.5 py-0.5 text-xs font-semibold tracking-wide uppercase",
+                      confidenceStyle(result.origin_assessment.confidence)
+                    )}
+                  >
+                    {result.origin_assessment.confidence} confidence
+                  </span>
+                  <p className="text-xs leading-relaxed text-muted-foreground">
+                    {result.origin_assessment.verdict}
+                  </p>
+                  {result.sender_timezone && (
+                    <div className="flex items-center gap-1.5 border-t pt-2">
+                      <Clock className="h-3 w-3 shrink-0 text-muted-foreground" />
+                      <span className="text-xs text-muted-foreground">
+                        Device timezone: UTC{result.sender_timezone.utc_offset}
+                        {result.sender_timezone.plausible_regions.length > 0 &&
+                          ` (${result.sender_timezone.plausible_regions.join(", ")})`}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </Panel>
+            </AnimatedContent>
+          )}
         </aside>
 
         {/* ── main content ──────────────────────────────────────────────── */}
@@ -493,6 +554,16 @@ export default function App() {
                             {geo.proxy && (
                               <Badge variant="destructive" className="text-xs">
                                 proxy/VPN
+                              </Badge>
+                            )}
+                            {geo.masking?.likely_masked && (
+                              <Badge
+                                variant="outline"
+                                className="gap-1 border-yellow-500/40 text-xs text-yellow-600 dark:text-yellow-400"
+                                title={geo.masking.note ?? undefined}
+                              >
+                                <Info className="h-3 w-3" />
+                                provider infra — not sender location
                               </Badge>
                             )}
                           </div>
