@@ -191,7 +191,7 @@ export default function App() {
           >
             <Upload className="h-3.5 w-3.5" />
             {file ? (
-              <span className="max-w-[140px] truncate">{file.name}</span>
+              <span className="max-w-35 truncate">{file.name}</span>
             ) : (
               "Upload .eml"
             )}
@@ -374,7 +374,7 @@ export default function App() {
                 icon={
                   <AlertTriangle className="h-3.5 w-3.5 text-destructive" />
                 }
-                className="flex-none border-destructive/30"
+                className="flex-none bg-destructive/10"
               >
                 <ul className="space-y-1">
                   {result.red_flags.map((flag, i) => (
