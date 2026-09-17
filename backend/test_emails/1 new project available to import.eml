@@ -1,0 +1,464 @@
+Delivered-To: krrishvardhan.23jics042@jietjodhpur.ac.in
+Received: by 2002:a05:7022:3d10:b0:143:1018:9ce5 with SMTP id ui16csp2692685dlb;
+        Sun, 13 Sep 2026 09:57:08 -0700 (PDT)
+X-Received: by 2002:a05:6a20:4311:b0:3d3:adad:f172 with SMTP id adf61e73a8af0-3daed3443b7mr23931954637.20.1789318628360;
+        Sun, 13 Sep 2026 09:57:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789318628; cv=none;
+        d=google.com; s=arc-20260327;
+        b=Css5e64+tP09YUT5IDTWl1l8VeauWp+3xLEw1bjDyf0k+eedDLGA+MkYydl1PeNddi
+         j4/KXy2W3gPK/SvTr2xpLGjB8TLRy6vtG3QqqyxPMZp+DuGW4V2o6Cl0UCrt7pmQiDbv
+         Z+8z0KPHu6ksJeUZHa1TK5HLGofvkab+w3U0JDhmC60uVAPKfoEikQllSGprPMQaTzVq
+         E8oFLa3ndlu3Uhpa/27xN8tixo2r+xKqlr+mBHM04bvgwpIvPnjo3i5FLuNVgQeKSiZa
+         GFCIMuTiExEbn5JR2qN2/MyVhN0EiPbYBYbea3hEsiaflJF0r9NsUQkChJivOzZhz9dt
+         OOWA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=feedback-id:date:message-id:mime-version:subject:to:reply-to:from
+         :dkim-signature:dkim-signature;
+        bh=DRmqoL9/LL8idVv6qJd8wEMbr3kty4mJJTcGwch/trI=;
+        fh=2AzT74gkgv2LdMRy/p/nAqFGD5bs7h74U8c74M9V3ws=;
+        b=HsgCjc+gVuu1nGsunIgPx6MQmxvJIEQRiPOD0Zy5Vv1Eufep/5u93YNDJ7bLdcur/t
+         4VfLWT4n5rL0IUGJGPNyjY9WSF2JSPNUwVYH7MnZHAXJeu6oqyoNdMiMiIUYDvNRyDON
+         jwz3Lvknc66S9oe+iWSyj6zilSveYuS/Fa8Z01W8w+thwYHZOUjaBwvUyxvrGFPDmMI4
+         OcEfLOy9AO1NkYPsjUKe4XfWVd3grHhMVD/8FDJ9TlPAQ7KGDyC+FpCtx2AEt143jrEN
+         AhiV/H61zIaemTOIWIxtb6xj65j3/d0N0LRWnG+634zm4gUenaGHuv54AAHAl5pElEzn
+         DuNg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@vercel.com header.s=xrxz75cdd7hqmueggvr2yk4ulqxz34zd header.b=L61uxqGy;
+       dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b=f0H5zNoP;
+       spf=pass (google.com: domain of 010101a09bb37ea9-80cd4d19-6c72-49b2-b8b0-294e2cd34346-000000@mail.vercel.com designates 206.55.150.64 as permitted sender) smtp.mailfrom=010101a09bb37ea9-80cd4d19-6c72-49b2-b8b0-294e2cd34346-000000@mail.vercel.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=vercel.com
+Return-Path: <010101a09bb37ea9-80cd4d19-6c72-49b2-b8b0-294e2cd34346-000000@mail.vercel.com>
+Received: from h150-64.smtp-out.us-west-2.amazonses.com (h150-64.smtp-out.us-west-2.amazonses.com. [206.55.150.64])
+        by mx.google.com with ESMTPS id 41be03b00d2f7-cc4c66654easi13827002a12.269.2026.09.13.09.57.07
+        for <krrishvardhan.23jics042@jietjodhpur.ac.in>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 13 Sep 2026 09:57:08 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 010101a09bb37ea9-80cd4d19-6c72-49b2-b8b0-294e2cd34346-000000@mail.vercel.com designates 206.55.150.64 as permitted sender) client-ip=206.55.150.64;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@vercel.com header.s=xrxz75cdd7hqmueggvr2yk4ulqxz34zd header.b=L61uxqGy;
+       dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b=f0H5zNoP;
+       spf=pass (google.com: domain of 010101a09bb37ea9-80cd4d19-6c72-49b2-b8b0-294e2cd34346-000000@mail.vercel.com designates 206.55.150.64 as permitted sender) smtp.mailfrom=010101a09bb37ea9-80cd4d19-6c72-49b2-b8b0-294e2cd34346-000000@mail.vercel.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=vercel.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=xrxz75cdd7hqmueggvr2yk4ulqxz34zd; d=vercel.com; t=1789318627;
+	h=From:Reply-To:To:Subject:MIME-Version:Content-Type:Message-ID:Date;
+	bh=7Btfr83fcFUWCuzdJim6g++sG14AcXy772fo/EMXPqs=;
+	b=L61uxqGy4vCrQhM33/RcNDAipWoWRD75cHpRurOcVmMRkrzpn/eLQ7LqaccSetbC
+	uImqu6zKO3B73Yq+c5iT6gtgjPCy4vl14YLI8VwO4BDnWthcwtM9rUnCvlilq7XtwLm
+	ey5r+MNuYZr8aut4N4+0L0D42aAyRI1l4Z2E5MWd9263SJ/vtll3AAdq42ir6QDimQa
+	j1LJ99uDp/F7hVoQ89zlZTylWjjk4Gz3WJ37dxDulx5CjYEFsRjB4OsxJiUCnw0wF1U
+	+YV+d97H1/h+f9nXZEAZZjGLYMfsOlfAh7G1Z2bBCEXnSM0RJB5qkFyUGqsVjGNtzuk
+	foCz2O9v8A==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1789318627;
+	h=From:Reply-To:To:Subject:MIME-Version:Content-Type:Message-ID:Date:Feedback-ID;
+	bh=7Btfr83fcFUWCuzdJim6g++sG14AcXy772fo/EMXPqs=;
+	b=f0H5zNoP5NptebQW32EdMYkXyFDXvl5n0YD601A9Z33Tg/Q8xpjotHBmnPwOFma0
+	VkE9rAK1ZTWAV+I+/4iCUtLnTBiQp/HDP9O3eM3TxOXKryz/My+4yfs/Nx6k52YHiRG
+	OpsibAYiCVf2Ax91znFlWsXQalJBgAKJeXoIhoKk=
+From: Vercel <notifications@vercel.com>
+Reply-To: no-reply@vercel.com
+To: krrishvardhan.23jics042@jietjodhpur.ac.in
+Subject: 1 new project available to import
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_71071_950287217.1789318626985"
+Message-ID: <010101a09bb37ea9-80cd4d19-6c72-49b2-b8b0-294e2cd34346-000000@us-west-2.amazonses.com>
+Date: Sun, 13 Sep 2026 16:57:06 +0000
+Feedback-ID: ::1.us-west-2.FoOqCThWXVf6UxtlBCXjpN6DawGbMccagHDueWriYXM=:AmazonSES
+X-SES-Outgoing: 2026.09.13-206.55.150.64
+
+------=_Part_71071_950287217.1789318626985
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+VercelHello, krrishvardhan.
+
+A new project in KrrishVardhan/mailTraceAI is available to import
+and deploy on Vercel.
+
+frontend
+
+KrrishVardhan/mailTraceAI =C2=B7 vite
+
+Import Project
+(https://vercel.com/new/import?framework=3Dvite&path=3Dfrontend&project-nam=
+e=3Dfrontend&provider=3Dgithub&s=3Dhttps%3A%2F%2Fgithub.com%2FKrrishVardhan=
+%2FmailTraceAI&import-source=3Dimport-candidates-email)
+
+-----------------------------------------------------------------
+
+If you'd like to report an issue, reach out to Vercel Help
+(https://vercel.com/help?utm_medium=3Demail&utm_source=3Dnotifications).
+
+Manage your notification settings
+(https://vercel.com/krrishvardhan-vyas-projects/~/settings/notifications?ut=
+m_medium=3Demail&utm_source=3Dnotifications)
+
+Copyright =C2=A9 2026 Vercel Inc.
+(https://vercel.com?utm_medium=3Demail&utm_source=3Dnotifications)
+All rights reserved.
+
+440 N Barranca Ave #4133 Covina, CA 91723
+
+:root { color-scheme: light dark; }
+
+.body { background-color: #ffffff; margin: 0; padding: 0; }
+.outer-table, .outer-td, .inner-td { background-color: #ffffff; }
+
+.block-row__cell { padding: 0 !important; }
+.block-row { padding: 0 !important; }
+
+p {
+color: #171717;
+font-family: -apple-system,BlinkMacSystemFont,'Segoe
+UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid
+Sans','Helvetica Neue',sans-serif;
+font-size: 16px; line-height: 1.5; margin: 0 0 16px 0;
+overflow-wrap: anywhere;
+}
+.break-all { color: #171717; font-size: 16px; line-height: 1.5;
+word-break: break-all; }
+h1 {
+color: #171717;
+font-family: -apple-system,BlinkMacSystemFont,'Segoe
+UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid
+Sans','Helvetica Neue',sans-serif;
+font-size: 24px; font-weight: 600; letter-spacing: -0.02em;
+margin: 0 0 24px 0; padding: 0;
+}
+h2 { color: #171717; font-size: 18px; font-weight: 600; margin: 0
+0 16px 0; }
+h3 { color: #171717; font-size: 16px; font-weight: 600; margin: 0
+0 12px 0; }
+a { color: #0067D6; text-decoration: none; }
+.block-markdown a { color: #0067D6; text-decoration: none; }
+a.block-button { color: inherit; }
+strong { color: #171717; font-weight: 600; }
+pre {
+font-family:
+ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Liberation
+Mono','Courier New',monospace;
+color: #171717; background-color: #F2F2F2; border: 1px solid
+#E6E6E6;
+padding: 12px 16px; border-radius: 8px; font-size: 14px;
+max-width: 100%; overflow: hidden; text-overflow: ellipsis;
+}
+code.inline {
+font-family:
+ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Liberation
+Mono','Courier New',monospace;
+color: #171717; font-size: 0.9em; background-color: #F2F2F2;
+padding: 2px 6px; border-radius: 4px;
+}
+ul, ol { padding-left: 20px; margin: -8px 0 16px 0; }
+li { font-family: -apple-system,BlinkMacSystemFont,'Segoe
+UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid
+Sans','Helvetica Neue',sans-serif; font-size: 16px; line-height:
+1.75; color: #171717; }
+.footer-text { color: #7D7D7D; font-size: 14px; line-height: 1.5;
+margin: 0 0 8px 0; }
+.footer-text a { color: #7D7D7D !important; text-decoration:
+underline !important; font-weight: 400 !important; }
+.footer-link { color: #7D7D7D !important; text-decoration:
+underline !important; font-weight: 400 !important; }
+.footer-hr { border-top-color: #E6E6E6; }
+
+.block-row.block-row--button_set-v1 { margin: 32px 0 !important;
+}
+.block-row.block-row--button_set-v1 .block-button { display:
+inline-block; box-sizing: border-box; text-decoration: none;
+-webkit-text-size-adjust: none; }
+.block-row.block-row--button_set-v1
+.block-button.block-button--solid.block-button--sm {
+background-color: #000000; border-radius: 8px !important; color:
+#ffffff;
+font-family: -apple-system,BlinkMacSystemFont,'Segoe
+UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid
+Sans','Helvetica Neue',sans-serif;
+font-size: 16px !important; font-weight: 500; line-height: 1em
+!important;
+mso-line-height-rule: exactly; padding: 12px 20px !important;
+text-align: center; text-decoration: none;
+}
+.block-row.block-row--button_set-v1
+.block-button.block-button--outline {
+border-style: solid; border-color: #E6E6E6; border-radius: 8px;
+color: #171717; font-size: 16px; font-weight: 500; padding: 14px
+20px;
+}
+.block-row.block-row--divider-v1 .block-divider { border-bottom:
+1px solid #E6E6E6; }
+.block-row.block-row--markdown-v1 .block-markdown > :first-child
+{ margin-top: 0; }
+.block-row.block-row--markdown-v1 .block-markdown > :last-child {
+margin-bottom: 0; }
+.vercel-logo { mix-blend-mode: difference; }
+
+@media (prefers-color-scheme: dark) {
+.body, .outer-table, .outer-td, .inner-td { background-color:
+#111111 !important; }
+p, .break-all, li, td { color: #ededed !important; }
+h1, h2, h3, strong { color: #ffffff !important; }
+a { color: #4da3ff !important; }
+td[bgcolor=3D"#000000"], .email-cta { background-color: #EDEDED
+!important; }
+td[bgcolor=3D"#000000"] a, .email-cta a { color: #0A0A0A
+!important; background-color: #EDEDED !important; }
+pre { color: #ededed !important; background-color: #282828
+!important; border-color: #333333 !important; }
+code, code.inline { color: #ededed !important; background-color:
+#282828 !important; }
+.footer-text, .footer-text p { color: #7D7D7D !important; }
+.footer-text a { color: #7D7D7D !important; }
+.footer-link { color: #7D7D7D !important; }
+.footer-hr { border-top-color: #333333 !important; }
+.block-row.block-row--button_set-v1
+.block-button.block-button--solid.block-button--sm {
+background-color: #EDEDED; color: #0A0A0A;}
+.block-row.block-row--button_set-v1
+.block-button.block-button--outline { border-color: #333333
+!important; color: #ededed !important; }
+.block-row.block-row--divider-v1 .block-divider {
+border-bottom-color: #333333 !important; }
+.vercel-code-block { background-color: #282828 !important; color:
+#ffffff !important; }
+.vercel-label-default { background-color: #282828 !important;
+color: #ededed !important; }
+.vercel-label-info { background-color: #0A2540 !important; color:
+#4da3ff !important; }
+.vercel-label-error { background-color: #3D1417 !important;
+color: #FF6166 !important; }
+.block-button { background-color: #EDEDED !important; color:
+#0A0A0A !important; }
+}
+
+@media only screen and (max-width: 620px) {
+.outer-td { padding: 32px 16px !important; }
+}
+------=_Part_71071_950287217.1789318626985
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html style=3D"color-scheme:light dark"><head><meta name=3D"color-scheme" c=
+ontent=3D"light dark"/><meta name=3D"supported-color-schemes" content=3D"li=
+ght dark"/></head><body class=3D"body" style=3D"background-color:#ffffff;ma=
+rgin:0;padding:0"><table class=3D"outer-table" width=3D"100%" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" style=3D"width:100%!important;backgroun=
+d-color:#ffffff"><tbody><tr><td class=3D"outer-td" align=3D"center" style=
+=3D"background-color:#ffffff;padding:32px 16px"><table width=3D"600" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"max-width:600px;width:1=
+00%;"><tbody><tr><td class=3D"inner-td" style=3D"background-color:#ffffff">=
+<div style=3D"font-family:-apple-system,BlinkMacSystemFont,&#39;Segoe UI&#3=
+9;,&#39;Roboto&#39;,&#39;Oxygen&#39;,&#39;Ubuntu&#39;,&#39;Cantarell&#39;,&=
+#39;Fira Sans&#39;,&#39;Droid Sans&#39;,&#39;Helvetica Neue&#39;,sans-serif=
+;text-align:left;max-width:600px;"><div style=3D"margin-bottom:48px"><img c=
+lass=3D"vercel-logo" src=3D"https://lishhsx6kmthaacj.public.blob.vercel-sto=
+rage.com/icon.png" width=3D"24" height=3D"21" alt=3D"Vercel" style=3D"displ=
+ay:block;mix-blend-mode:difference"/></div><table class=3D"block-row block-=
+row--markdown-v1" id=3D"7baa3166-45dc-431b-a410-232be730305f" cellspacing=
+=3D"0" width=3D"100%" cellpadding=3D"0" style=3D"padding:0 !important"><tbo=
+dy><tr class=3D"block-row__row"><td class=3D"block-row__cell" style=3D"padd=
+ing:0 !important;padding-bottom:8px;padding-left:4px;padding-right:4px;padd=
+ing-top:8px"><table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0"><tbo=
+dy><tr><td class=3D"block-markdown"><p style=3D"font-family:-apple-system,B=
+linkMacSystemFont,&#39;Segoe UI&#39;,&#39;Roboto&#39;,&#39;Oxygen&#39;,&#39=
+;Ubuntu&#39;,&#39;Cantarell&#39;,&#39;Fira Sans&#39;,&#39;Droid Sans&#39;,&=
+#39;Helvetica Neue&#39;,sans-serif;overflow-wrap:anywhere;margin-top:0;font=
+-size:16px;line-height:1.5;color:#171717;margin:0 0 16px 0"><span class=3D"=
+break-all" style=3D"color:#171717;font-size:16px;line-height:1.5;word-break=
+:break-all">Hello, <span style=3D"font-weight:500;">krrishvardhan</span>.</=
+span></p><p style=3D"font-family:-apple-system,BlinkMacSystemFont,&#39;Sego=
+e UI&#39;,&#39;Roboto&#39;,&#39;Oxygen&#39;,&#39;Ubuntu&#39;,&#39;Cantarell=
+&#39;,&#39;Fira Sans&#39;,&#39;Droid Sans&#39;,&#39;Helvetica Neue&#39;,san=
+s-serif;overflow-wrap:anywhere;font-size:16px;line-height:1.5;color:#171717=
+;margin:0 0 24px 0">
+                A new project in <strong style=3D"color:#171717;font-weight=
+:600">KrrishVardhan/mailTraceAI</strong> is available to import and deploy =
+on Vercel.</p><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D=
+"0" border=3D"0" width=3D"100%" style=3D"margin-bottom:0;margin:0;border:1p=
+x solid #eaeaea;border-radius:8px"><tbody><tr><td style=3D"padding:16px 20p=
+x;"><p style=3D"font-family:-apple-system,BlinkMacSystemFont,&#39;Segoe UI&=
+#39;,&#39;Roboto&#39;,&#39;Oxygen&#39;,&#39;Ubuntu&#39;,&#39;Cantarell&#39;=
+,&#39;Fira Sans&#39;,&#39;Droid Sans&#39;,&#39;Helvetica Neue&#39;,sans-ser=
+if;overflow-wrap:anywhere;font-size:14px;line-height:1.5;color:#171717;marg=
+in:0"><strong style=3D"color:#171717;font-weight:600">frontend</strong></p>=
+<p style=3D"font-family:-apple-system,BlinkMacSystemFont,&#39;Segoe UI&#39;=
+,&#39;Roboto&#39;,&#39;Oxygen&#39;,&#39;Ubuntu&#39;,&#39;Cantarell&#39;,&#3=
+9;Fira Sans&#39;,&#39;Droid Sans&#39;,&#39;Helvetica Neue&#39;,sans-serif;o=
+verflow-wrap:anywhere;font-size:13px;line-height:1.5;color:#666666;margin:6=
+px 0 0 0">KrrishVardhan/mailTraceAI =C2=B7 vite</p></td><td align=3D"right"=
+ style=3D"padding:16px 20px;"><a href=3D"https://vercel.com/new/import?fram=
+ework=3Dvite&amp;path=3Dfrontend&amp;project-name=3Dfrontend&amp;provider=
+=3Dgithub&amp;s=3Dhttps%3A%2F%2Fgithub.com%2FKrrishVardhan%2FmailTraceAI&am=
+p;import-source=3Dimport-candidates-email" target=3D"_blank" style=3D"displ=
+ay:inline-block;font-size:14px;font-weight:500;color:#ffffff;text-decoratio=
+n:none;background-color:#000000;padding:10px 18px;border-radius:8px;font-fa=
+mily:system-ui,-apple-system,&#39;Segoe UI&#39;,Roboto,Helvetica,Arial,sans=
+-serif;line-height:1em;mso-line-height-rule:exactly;white-space:nowrap">
+                      Import Project
+                    </a></td></tr></tbody></table></td></tr></tbody></table=
+></td></tr></tbody></table><hr class=3D"footer-hr" style=3D"border-top-colo=
+r:#E6E6E6;border:none;border-top:1px solid #E6E6E6;margin:44px 0 32px 0;wid=
+th:100%"/><p class=3D"footer-text" style=3D"font-family:-apple-system,Blink=
+MacSystemFont,&#39;Segoe UI&#39;,&#39;Roboto&#39;,&#39;Oxygen&#39;,&#39;Ubu=
+ntu&#39;,&#39;Cantarell&#39;,&#39;Fira Sans&#39;,&#39;Droid Sans&#39;,&#39;=
+Helvetica Neue&#39;,sans-serif;overflow-wrap:anywhere;color:#7D7D7D;font-si=
+ze:14px;line-height:1.5;margin:0 0 8px 0">If you&#39;d like to report an is=
+sue, reach out to <a class=3D"footer-link" style=3D"color:#7D7D7D !importan=
+t;text-decoration:underline !important;font-weight:400 !important" href=3D"=
+https://vercel.com/help?utm_medium=3Demail&amp;utm_source=3Dnotifications" =
+target=3D"_blank">Vercel Help</a>.</p><p class=3D"footer-text" style=3D"fon=
+t-family:-apple-system,BlinkMacSystemFont,&#39;Segoe UI&#39;,&#39;Roboto&#3=
+9;,&#39;Oxygen&#39;,&#39;Ubuntu&#39;,&#39;Cantarell&#39;,&#39;Fira Sans&#39=
+;,&#39;Droid Sans&#39;,&#39;Helvetica Neue&#39;,sans-serif;overflow-wrap:an=
+ywhere;color:#7D7D7D;font-size:14px;line-height:1.5;margin:0 0 8px 0"><a cl=
+ass=3D"footer-link" style=3D"color:#7D7D7D !important;text-decoration:under=
+line !important;font-weight:400 !important" href=3D"https://vercel.com/krri=
+shvardhan-vyas-projects/~/settings/notifications?utm_medium=3Demail&amp;utm=
+_source=3Dnotifications" target=3D"_blank">Manage your notification setting=
+s</a></p><p class=3D"footer-text" style=3D"font-family:-apple-system,BlinkM=
+acSystemFont,&#39;Segoe UI&#39;,&#39;Roboto&#39;,&#39;Oxygen&#39;,&#39;Ubun=
+tu&#39;,&#39;Cantarell&#39;,&#39;Fira Sans&#39;,&#39;Droid Sans&#39;,&#39;H=
+elvetica Neue&#39;,sans-serif;overflow-wrap:anywhere;color:#7D7D7D;font-siz=
+e:14px;line-height:1.5;margin:0 0 8px 0">
+                    Copyright =C2=A9 2026 <a class=3D"footer-link" style=3D=
+"color:#7D7D7D !important;text-decoration:underline !important;font-weight:=
+400 !important" href=3D"https://vercel.com?utm_medium=3Demail&amp;utm_sourc=
+e=3Dnotifications" target=3D"_blank">Vercel Inc.</a> All rights reserved.<b=
+r/>
+                    440 N Barranca Ave #4133 Covina, CA 91723
+                  </p></div></td></tr></tbody></table></td></tr></tbody></t=
+able><style>
+  :root { color-scheme: light dark; }
+
+  .body { background-color: #ffffff; margin: 0; padding: 0; }
+  .outer-table, .outer-td, .inner-td { background-color: #ffffff; }
+
+  .block-row__cell { padding: 0 !important; }
+  .block-row { padding: 0 !important; }
+
+  p {
+    color: #171717;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxyg=
+en','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue',sans-ser=
+if;
+    font-size: 16px; line-height: 1.5; margin: 0 0 16px 0; overflow-wrap: a=
+nywhere;
+  }
+  .break-all { color: #171717; font-size: 16px; line-height: 1.5; word-brea=
+k: break-all; }
+  h1 {
+    color: #171717;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxyg=
+en','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue',sans-ser=
+if;
+    font-size: 24px; font-weight: 600; letter-spacing: -0.02em; margin: 0 0=
+ 24px 0; padding: 0;
+  }
+  h2 { color: #171717; font-size: 18px; font-weight: 600; margin: 0 0 16px =
+0; }
+  h3 { color: #171717; font-size: 16px; font-weight: 600; margin: 0 0 12px =
+0; }
+  a { color: #0067D6; text-decoration: none; }
+  .block-markdown a { color: #0067D6; text-decoration: none; }
+  a.block-button { color: inherit; }
+  strong { color: #171717; font-weight: 600; }
+  pre {
+    font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Liberat=
+ion Mono','Courier New',monospace;
+    color: #171717; background-color: #F2F2F2; border: 1px solid #E6E6E6;
+    padding: 12px 16px; border-radius: 8px; font-size: 14px; max-width: 100=
+%; overflow: hidden; text-overflow: ellipsis;
+  }
+  code.inline {
+    font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Liberat=
+ion Mono','Courier New',monospace;
+    color: #171717; font-size: 0.9em; background-color: #F2F2F2; padding: 2=
+px 6px; border-radius: 4px;
+  }
+  ul, ol { padding-left: 20px; margin: -8px 0 16px 0; }
+  li { font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','O=
+xygen','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue',sans-=
+serif; font-size: 16px; line-height: 1.75; color: #171717; }
+  .footer-text { color: #7D7D7D; font-size: 14px; line-height: 1.5; margin:=
+ 0 0 8px 0; }
+  .footer-text a { color: #7D7D7D !important; text-decoration: underline !i=
+mportant; font-weight: 400 !important; }
+  .footer-link { color: #7D7D7D !important; text-decoration: underline !imp=
+ortant; font-weight: 400 !important; }
+  .footer-hr { border-top-color: #E6E6E6; }
+
+  .block-row.block-row--button_set-v1 { margin: 32px 0 !important; }
+  .block-row.block-row--button_set-v1 .block-button { display: inline-block=
+; box-sizing: border-box; text-decoration: none; -webkit-text-size-adjust: =
+none; }
+  .block-row.block-row--button_set-v1 .block-button.block-button--solid.blo=
+ck-button--sm {
+    background-color: #000000; border-radius: 8px !important; color: #fffff=
+f;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxyg=
+en','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue',sans-ser=
+if;
+    font-size: 16px !important; font-weight: 500; line-height: 1em !importa=
+nt;
+    mso-line-height-rule: exactly; padding: 12px 20px !important; text-alig=
+n: center; text-decoration: none;
+  }
+  .block-row.block-row--button_set-v1 .block-button.block-button--outline {
+    border-style: solid; border-color: #E6E6E6; border-radius: 8px; color: =
+#171717; font-size: 16px; font-weight: 500; padding: 14px 20px;
+  }
+  .block-row.block-row--divider-v1 .block-divider { border-bottom: 1px soli=
+d #E6E6E6; }
+  .block-row.block-row--markdown-v1 .block-markdown > :first-child { margin=
+-top: 0; }
+  .block-row.block-row--markdown-v1 .block-markdown > :last-child { margin-=
+bottom: 0; }
+  .vercel-logo { mix-blend-mode: difference; }
+
+  @media (prefers-color-scheme: dark) {
+    .body, .outer-table, .outer-td, .inner-td { background-color: #111111 !=
+important; }
+    p, .break-all, li, td { color: #ededed !important; }
+    h1, h2, h3, strong { color: #ffffff !important; }
+    a { color: #4da3ff !important; }
+    td[bgcolor=3D"#000000"], .email-cta { background-color: #EDEDED !import=
+ant; }
+    td[bgcolor=3D"#000000"] a, .email-cta a { color: #0A0A0A !important; ba=
+ckground-color: #EDEDED !important; }
+    pre { color: #ededed !important; background-color: #282828 !important; =
+border-color: #333333 !important; }
+    code, code.inline { color: #ededed !important; background-color: #28282=
+8 !important; }
+    .footer-text, .footer-text p { color: #7D7D7D !important; }
+    .footer-text a { color: #7D7D7D !important; }
+    .footer-link { color: #7D7D7D !important; }
+    .footer-hr { border-top-color: #333333 !important; }
+    .block-row.block-row--button_set-v1 .block-button.block-button--solid.b=
+lock-button--sm { background-color: #EDEDED; color: #0A0A0A;}
+    .block-row.block-row--button_set-v1 .block-button.block-button--outline=
+ { border-color: #333333 !important; color: #ededed !important; }
+    .block-row.block-row--divider-v1 .block-divider { border-bottom-color: =
+#333333 !important; }
+    .vercel-code-block { background-color: #282828 !important; color: #ffff=
+ff !important; }
+    .vercel-label-default { background-color: #282828 !important; color: #e=
+deded !important; }
+    .vercel-label-info { background-color: #0A2540 !important; color: #4da3=
+ff !important; }
+    .vercel-label-error { background-color: #3D1417 !important; color: #FF6=
+166 !important; }
+    .block-button { background-color: #EDEDED !important; color: #0A0A0A !i=
+mportant; }
+  }
+
+  @media only screen and (max-width: 620px) {
+    .outer-td { padding: 32px 16px !important; }
+  }
+</style><img src=3D"https://c1.knock.app/t/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpX=
+VCJ9.eyJpYXQiOjE3ODkzMTg2MjY4NDgwNTMsIm1pZCI6IjNKSFdsaVVWbXkwNGJna3J0Wmpsbn=
+ZCdjNHVCJ9.xHOgnp9HF_5OF__cjfsTl13Cvu-xhdae2YElaoiQAYk/k.png" class=3D"k-pn=
+g" width=3D"1px" height=3D"1px" role=3D"none"/></body></html>
+------=_Part_71071_950287217.1789318626985--

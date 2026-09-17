@@ -18,6 +18,9 @@ dist/
 build/
 *.egg
 
+# data folder
+backend/ml/data/
+
 # Testing & coverage
 .pytest_cache/
 .coverage

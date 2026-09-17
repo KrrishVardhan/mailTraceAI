@@ -1,0 +1,294 @@
+Delivered-To: vyaskrrishvardhan@gmail.com
+Received: by 2002:a05:6a11:327:b0:6f2:92b1:2a6a with SMTP id id39csp4446967pxb;
+        Mon, 14 Sep 2026 22:30:09 -0700 (PDT)
+X-Received: by 2002:a5d:6f17:0:b0:485:8df0:dca with SMTP id ffacd0b85a97d-48702b6f856mr6705677f8f.3.1789450209393;
+        Mon, 14 Sep 2026 22:30:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789450209; cv=none;
+        d=google.com; s=arc-20260327;
+        b=TPE4sKUhvKiF/PLmMXNTpFTnpeuPpzc6cxqx420PiqGW6AsTkJVgDJe5GavZwqsAVL
+         c3iYk0thxsdBq5vVtAEn61XdSwWgHCn7gXZisTo3sDfzoBgzVXY1cqN5YbtH1LkivvxZ
+         22UMTc7ErfEVtSF4PrjRDM5J0h99WbSVACq0Nsn3Xs85OI1+LRE8g5IBrSxIwPRSLgAr
+         jVeZJ2pizJgFR91zsWlLMMRnM0KusIrucCdlnu+EHGBPtz5Eqey0faXlX2g04HhEXOYN
+         /zgsUIakPw9hWuK5VYo4/hsvt1A7VY9Woelj+QDuEXv0Ce7Uxi0VWfhI9grbg2DUq+QT
+         lRcA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=reply-to:message-id:mime-version:list-unsubscribe-post
+         :list-unsubscribe:list-id:from:feedback-id:date:subject:to
+         :dkim-signature:dkim-signature;
+        bh=YLFH+e9UlT9H5TJHdvqpO6H5Y7hvqgD/aZXPIERWn9o=;
+        fh=n7TCEaTLkcazh5R7F4c/9kQPZSayeAXJtl4+tv69MGw=;
+        b=V06Ty+qPAqfxmlMtcCNXyc5ljJwOjIM38PAPkoe0PHdHXaKZ/Bum1RIfxQb6b+XKGB
+         TY7+8KZfV/ONthF0RHWabQt/NcNJHoA/fxv160dhrpVZPDwguXUCd+BCp+6A9h7S0ls8
+         Z+QpXobq3LetyOthFXBIM/Mm0y2UI0vUV/Tu2HbU+AuwWpMvSdnw/QbX2sgqylTUO5kx
+         lWAb+0TNsvVpadvaDOPWMGaYj9sZ/g3dVO8JvBKebUZTWyx6akEbXFJUTYrfMMMa6ElI
+         lZSy6ceC7YcyQtrZuP0l+8w0fYp/2CTwlfo/1Q85hp+a3oMqrnWFqJUHWNjHDvJMdCKT
+         qx4A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@prisma.io header.s=mail header.b=J+MXyEfq;
+       dkim=pass header.i=@mailin.fr header.s=mail header.b=qLenuad5;
+       spf=pass (google.com: domain of bounces-bkoe7-hello=prisma.io@shared-p100-i34.d.sp1-brevo.net designates 77.32.149.34 as permitted sender) smtp.mailfrom="bounces-bkoe7-hello=prisma.io@shared-p100-i34.d.sp1-brevo.net";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=prisma.io
+Return-Path: <bounces-bkoe7-hello=prisma.io@shared-p100-i34.d.sp1-brevo.net>
+Received: from shared-p100-i34.d.sp1-brevo.net (shared-p100-i34.d.sp1-brevo.net. [77.32.149.34])
+        by mx.google.com with ESMTPS id ffacd0b85a97d-486eba525a3si21655344f8f.250.2026.09.14.22.30.09
+        for <vyaskrrishvardhan@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Sep 2026 22:30:09 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces-bkoe7-hello=prisma.io@shared-p100-i34.d.sp1-brevo.net designates 77.32.149.34 as permitted sender) client-ip=77.32.149.34;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@prisma.io header.s=mail header.b=J+MXyEfq;
+       dkim=pass header.i=@mailin.fr header.s=mail header.b=qLenuad5;
+       spf=pass (google.com: domain of bounces-bkoe7-hello=prisma.io@shared-p100-i34.d.sp1-brevo.net designates 77.32.149.34 as permitted sender) smtp.mailfrom="bounces-bkoe7-hello=prisma.io@shared-p100-i34.d.sp1-brevo.net";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=prisma.io
+DKIM-Signature: a=rsa-sha256; bh=YLFH+e9UlT9H5TJHdvqpO6H5Y7hvqgD/aZXPIERWn9o=;
+ c=relaxed/relaxed; d=prisma.io;
+ h=to:cc:from:reply-to:subject:date:mime-version:content-type:list-id:list-unsubscribe:x-csa-complaints:list-unsubscribe-post:message-id:sender:x-sib-id:x-mailin-client:x-mailin-campaign:feedback-id;
+ q=dns/txt; s=mail; t=1789450209; v=1;
+ b=J+MXyEfqgeayYAuVS6vUv20mBkgyQ8Vv3p1r+Oo8sW8DeSXWaiv9Ook0wseD/JR5vDvfuiQx
+ Zyn2/DYwop7EvF9PARqaVx2m2HZO5hxB9/02Ku4Rqqf0QshyCC6EBDu2V4aK8MoBXSgeQzDvrpU
+ JQ7p5ZTGK0TdHM79f16tPhhI=
+DKIM-Signature: a=rsa-sha256; bh=YLFH+e9UlT9H5TJHdvqpO6H5Y7hvqgD/aZXPIERWn9o=;
+ c=relaxed/relaxed; d=mailin.fr;
+ h=to:cc:from:reply-to:subject:date:mime-version:content-type:list-id:list-unsubscribe:x-csa-complaints:list-unsubscribe-post:message-id:sender:x-sib-id:x-mailin-client:x-mailin-campaign:feedback-id;
+ q=dns/txt; s=mail; t=1789450209; v=1;
+ b=qLenuad5TpGt8seREGdrBogo9nudfUMtNB3nwu98x/4xkb3yEQxAYDL9mFpi98bBMIYsXAyq
+ iBN+Hkl/M1O7C4DB8u2ce+NhtVMbSmD8GYnQMnq82E1fWMy1paalSATOwaNxaaHf8ZIieRktO2d
+ 2nFicI4wh1OYNhQjV4wiJJHg=
+To: <vyaskrrishvardhan@gmail.com>
+Subject: A lot has changed since you last logged in
+Content-Type: multipart/alternative; boundary="-------?=_70256-4733846381555"
+Date: Tue, 15 Sep 2026 05:30:09 +0000
+Feedback-ID: 77.32.149.34:6616367_237:6616367:Sendinblue
+From: Prisma <hello@prisma.io>
+List-Id: NjYxNjM2Ny0zNDgyNjMtMA== <NjYxNjM2Ny0zNDgyNjMtMA==.list-id.mailin.fr>
+List-Unsubscribe: <mailto:unsubscribe@shared-p100-i34.d.sp1-brevo.net?subject=unsub-4bdro3u6bmpkvj&body=4bdro3u6bmpkvj>,<https://bkoe7.r.sp1-brevo.net/mk/un/li/sh/7nVTPdbLJ2bPbEuX0v5EKGZP9naRQRy/07rKmK1NhwdS>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+MIME-Version: 1.0
+Message-Id: <202615090530.4bdro3u6bmpkvj@shared-p100-i34.d.sp1-brevo.net>
+Reply-To: <hello@prisma.io>
+X-Csa-Complaints: csa-complaints@eco.de
+X-Mailer: Sendinblue
+X-Mailin-Campaign: 237
+X-Mailin-Client: 6616367
+X-sib-id: DoQ3SJke_gxEJVrgdgem54Nk0r8UJ1kHivhzt4-6nN6ImR8p4Pu6rEv2TH0NYXqAn22zUzDLk85PhXwNBlrmzHU7mxnFPoCRqw9Z-XEW1_ZGGsA7NmelhLi5Z9kUYjwFavrWpP-uYJk1tVoKUH823QIF657OREWjGDbtceZDLdF-GALaGKD1JW1YIkTdHhaxpRjAs4RR5wfZsZtrkiBmgAG6sP7LTHouZhyz4cne0Ym-lzHEaahvZvhOGBXM
+
+---------?=_70256-4733846381555
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+
+Prisma
+
+Hi there,
+
+If you remember Prisma mainly as an ORM, here=E2=80=99s the quick reintrodu=
+ction: Prisma now gives your coding agent a Postgres database, a type-safe =
+data layer, and hosting in one platform.
+
+Here=E2=80=99s what=E2=80=99s new:
+
+=E2=80=A2 *Ship with Prisma Compute:* Deploy your TypeScript app next to it=
+s database with one command, giving every branch an isolated environment fo=
+r safer testing and faster queries without a cross-provider network hop. =
+=E2=80=A2 *Build more for free:* You now get 200,000 Postgres operations an=
+d 1 million Compute requests each month. You can start without a credit car=
+d, with usage capped at the included limits. =E2=80=A2 *Build with Prisma 8=
+:* The ORM has been rebuilt in TypeScript to be faster, lighter, and easier=
+ for coding agents to work with, while keeping Prisma=E2=80=99s declarative=
+, type-safe workflow.
+
+Your existing account is ready when you are.
+
+Build with Prisma =E2=86=92 ( https://bkoe7.r.sp1-brevo.net/mk/cl/f/sh/7nVU=
+1aA2nfsTSeej04U7Akrnk0JJtyw/h472AMH23Ccv )
+
+Start from a template ( https://bkoe7.r.sp1-brevo.net/mk/cl/f/sh/7nVU1aA2nf=
+uMSBA1ydiZD7BbuMo6dvS/wQ_fz0qLFQhZ ) and be up and running in about two min=
+utes, or bring an existing app ( https://bkoe7.r.sp1-brevo.net/mk/cl/f/sh/7=
+nVU1aA2nfwFRhfKxCx1FTVQ4jItNry/ljcLS3i09b1u ) to Prisma Compute.
+
+Read where Prisma is heading =E2=86=92 ( https://bkoe7.r.sp1-brevo.net/mk/c=
+l/f/sh/7nVU1aA2nfy8REAdvmBTHppEF5ng7oU/S4NcAdnHN-zZ )
+
+From prompt to production,
+The Prisma team
+
+*Prisma Data, Inc*
+38350 Fremont Blvd #203, Fremont, CA 94536
+You're receiving this because you have a Prisma account.
+Unsubscribe ( https://bkoe7.r.sp1-brevo.net/mk/un/v2/sh/7nVTPdbLJ2bPbEuX0v5=
+EKGZP9naRQRy/07rKmK1NhwdS )
+
+
+---------?=_70256-4733846381555
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
+
+<!DOCTYPE html>
+<html lang=3D"en">
+<head>
+<meta charset=3D"utf-8">
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1"=
+>
+<title>A lot has changed at Prisma</title>
+<!--[if !mso]><!--><style type=3D"text/css">@import url("https://fonts.goog=
+leapis.com/css2?family=3DBarlow:wght@600;700&family=3DInter:wght@400;600;70=
+0&display=3Dswap");</style><!--<![endif]-->
+</head>
+<body style=3D"margin:0; padding:0; background-color:#ffffff;"> <table cell=
+padding=3D"0" border=3D"0" cellspacing=3D"0" style=3D"mso-hide:all; display=
+:none;">
+<tr><td>Your agent builds it; Prisma runs it. Database, ORM, and hosting, f=
+ree to start.&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj=
+; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwn=
+j; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zw=
+nj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&z=
+wnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&=
+zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;=
+&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy=
+;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &sh=
+y;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &s=
+hy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &=
+shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; =
+&shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp;=
+ &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp=
+; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbs=
+p; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nb=
+sp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &n=
+bsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &=
+nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; =
+&nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj;=
+ &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj=
+; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwn=
+j; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zw=
+nj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&z=
+wnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&=
+zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;=
+&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy=
+;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &sh=
+y;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &s=
+hy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &=
+shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; =
+&shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp;=
+ &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp=
+; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbs=
+p; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nb=
+sp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &n=
+bsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &=
+nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; =
+&nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj;=
+ &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj=
+; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwn=
+j; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zw=
+nj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&z=
+wnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&=
+zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;=
+&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy=
+;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &sh=
+y;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &s=
+hy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &=
+shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; =
+&shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp;=
+ &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;&zwnj; &nbsp; &shy;</td></tr></=
+table> <!--[if mso]> <img width=3D"1" height=3D"1" src=3D"https://bkoe7.r.s=
+p1-brevo.net/mk/op/sh/7nVTPddU8lzHnW0e4zOglMzAOEXVs4E/_i7UJas3Gh83" /> <![e=
+ndif]-->
+	<!--[if !mso]> <!----> <img style=3D"display:none" src=3D"https://bkoe7.r.=
+sp1-brevo.net/mk/op/sh/7nVTPddU8lzHnW0e4zOglMzAOEXVs4E/_i7UJas3Gh83" /> <!-=
+- <![endif]-->=20
+<table role=3D"presentation" width=3D"100%" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"background-color:#ffffff;">
+<tr><td align=3D"center" style=3D"padding:24px 16px;">
+<table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=3D=
+"0" style=3D"max-width:600px; width:100%; background-color:#ffffff;">
+  <tr><td style=3D"padding:24px 5px 8px 5px; font-family:Barlow,arial,sans-=
+serif;">
+    <div style=3D"font-size:22px; font-weight:700; color:#1f2d3d;">Prisma</=
+div>
+  </td></tr>
+  <tr><td style=3D"padding:16px 5px 0 5px; font-family:Inter,arial,sans-ser=
+if; font-size:16px; line-height:1.5; color:#3b3f44;">
+    <p style=3D"margin:0 0 16px;">Hi there,</p>
+    <p style=3D"margin:0 0 16px;">If you remember Prisma mainly as an ORM, =
+here&rsquo;s the quick reintroduction: Prisma now gives your coding agent a=
+ Postgres database, a type-safe data layer, and hosting in one platform.</p=
+>
+    <p style=3D"margin:0 0 12px;">Here&rsquo;s what&rsquo;s new:</p>
+    <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"margin:0 0 16px;">
+      <tr><td style=3D"font-family:Inter,arial,sans-serif; font-size:16px; =
+line-height:1.5; color:#3b3f44; padding:0 0 8px 16px;">&bull;&nbsp; <strong=
+ style=3D"color:#1f2d3d;">Ship with Prisma Compute:</strong> Deploy your Ty=
+peScript app next to its database with one command, giving every branch an =
+isolated environment for safer testing and faster queries without a cross-p=
+rovider network hop.</td></tr>
+      <tr><td style=3D"font-family:Inter,arial,sans-serif; font-size:16px; =
+line-height:1.5; color:#3b3f44; padding:0 0 8px 16px;">&bull;&nbsp; <strong=
+ style=3D"color:#1f2d3d;">Build more for free:</strong> You now get 200,000=
+ Postgres operations and 1 million Compute requests each month. You can sta=
+rt without a credit card, with usage capped at the included limits.</td></t=
+r>
+      <tr><td style=3D"font-family:Inter,arial,sans-serif; font-size:16px; =
+line-height:1.5; color:#3b3f44; padding:0 0 8px 16px;">&bull;&nbsp; <strong=
+ style=3D"color:#1f2d3d;">Build with Prisma 8:</strong> The ORM has been re=
+built in TypeScript to be faster, lighter, and easier for coding agents to =
+work with, while keeping Prisma&rsquo;s declarative, type-safe workflow.</t=
+d></tr>
+    </table>
+    <p style=3D"margin:0 0 16px;">Your existing account is ready when you a=
+re.</p>
+  </td></tr>
+  <tr><td align=3D"center" style=3D"padding:4px 5px 20px 5px;">
+    <table role=3D"presentation" width=3D"300" cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D"border-collapse:separate; background-color:#f34a60; border=
+-radius:4px; width:300px;">
+      <tr><td align=3D"center" style=3D"padding:12px 0;">
+        <a href=3D"https://bkoe7.r.sp1-brevo.net/mk/cl/f/sh/7nVU1aA2nfsTSee=
+j04U7Akrnk0JJtyw/h472AMH23Ccv" style=3D"display:block; color:#ffffff; font-=
+family:Inter,arial,sans-serif; font-size:16px; font-weight:bold; line-heigh=
+t:1.15; text-decoration:none;" sib_link_id=3D"0" templating=3D"n">Build wit=
+h Prisma &rarr;</a>
+      </td></tr>
+    </table>
+  </td></tr>
+  <tr><td style=3D"padding:0 5px 20px 5px; font-family:Inter,arial,sans-ser=
+if; font-size:15px; line-height:1.5; color:#3b3f44;">
+    <p style=3D"margin:0;"><a href=3D"https://bkoe7.r.sp1-brevo.net/mk/cl/f=
+/sh/7nVU1aA2nfuMSBA1ydiZD7BbuMo6dvS/wQ_fz0qLFQhZ" style=3D"color:#4a5568; f=
+ont-weight:bold; text-decoration:underline;" sib_link_id=3D"1" templating=
+=3D"n">Start from a template</a> and be up and running in about two minutes=
+, or <a href=3D"https://bkoe7.r.sp1-brevo.net/mk/cl/f/sh/7nVU1aA2nfwFRhfKxC=
+x1FTVQ4jItNry/ljcLS3i09b1u" style=3D"color:#4a5568; font-weight:bold; text-=
+decoration:underline;" sib_link_id=3D"2" templating=3D"n">bring an existing=
+ app</a> to Prisma Compute.</p>
+  </td></tr>
+  <tr><td style=3D"padding:0 5px 32px 5px; font-family:Inter,arial,sans-ser=
+if; font-size:16px; line-height:1.5; color:#3b3f44;">
+    <p style=3D"margin:0 0 16px;"><a href=3D"https://bkoe7.r.sp1-brevo.net/=
+mk/cl/f/sh/7nVU1aA2nfy8REAdvmBTHppEF5ng7oU/S4NcAdnHN-zZ" style=3D"color:#4a=
+5568; font-weight:bold; text-decoration:underline;" sib_link_id=3D"3" templ=
+ating=3D"n">Read where Prisma is heading &rarr;</a></p>
+    <p style=3D"margin:0;">From prompt to production,<br>The Prisma team</p=
+>
+  </td></tr>
+</table>
+<table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=3D=
+"0" style=3D"max-width:600px; width:100%;">
+  <tr><td style=3D"padding:20px 5px; border-top:1px solid #858588; font-fam=
+ily:Inter,arial,sans-serif; font-size:14px; line-height:1.6; color:#4a5568;=
+ text-align:center;">
+    <strong>Prisma Data, Inc</strong><br>
+    38350 Fremont Blvd #203, Fremont, CA 94536<br>
+    You're receiving this because you have a Prisma account.<br>
+    <a href=3D"https://bkoe7.r.sp1-brevo.net/mk/un/v2/sh/7nVTPdbLJ2bPbEuX0v=
+5EKGZP9naRQRy/07rKmK1NhwdS" style=3D"color:#4a5568; font-weight:bold; text-=
+decoration:underline;">Unsubscribe</a>
+  </td></tr>
+</table>
+</td></tr>
+</table>
+   </body>
+</html>
+
+---------?=_70256-4733846381555--
+

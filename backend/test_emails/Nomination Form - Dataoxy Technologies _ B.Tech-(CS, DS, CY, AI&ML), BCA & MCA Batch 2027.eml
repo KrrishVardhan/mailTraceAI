@@ -1,0 +1,1157 @@
+Delivered-To: krrishvardhan.23jics042@jietjodhpur.ac.in
+Received: by 2002:a05:7022:3d10:b0:143:1018:9ce5 with SMTP id ui16csp4701794dlb;
+        Tue, 15 Sep 2026 03:08:42 -0700 (PDT)
+X-Forwarded-Encrypted: i=5; AKwUvBzAKTmDKlh732rNanDLNo27lnWVvdjtr8qJi9cFTJTJIiw4Squ+o4abTW48xJvIVch/w6niixBBflIoedgiF5B2M2EqwqxXww==@jietjodhpur.ac.in
+X-Received: by 2002:a05:600c:19ca:b0:49c:fc6c:bdfa with SMTP id 5b1f17b1804b1-49e7a66aa96mr78243595e9.17.1789466921733;
+        Tue, 15 Sep 2026 03:08:41 -0700 (PDT)
+ARC-Seal: i=4; a=rsa-sha256; t=1789466921; cv=pass;
+        d=google.com; s=arc-20260327;
+        b=EJXAWKM4PbkfE+QbjZkksBV1rdLNyF0/esfPEawrJPQdEmaUln22VzpARSjpf2Jm5P
+         xqqWHhEKgt1me3fTLIELs6ThdiFayaX6osM46+b8wi0w2/Hk0Yue8hrgOq8I4gXODscJ
+         CsQgdTFHWuXwXv9/zuU38dBtVuoCfbpgsmRKNSgRse8uifNKrRrr5TiIAbQhx9+xPf8e
+         kCQ0JQR/pveUXighJ9Mx9SoKvAOJg2qFxTw3rdK2SFp6311KVt5lE8TpHMnfzLjwyYCo
+         0WdPeobOPS0KREyJdh3/hWfA9zrwV+TqIKTo/app3G7X+4i604JfzaLN14rGXHVyYqvd
+         eGDQ==
+ARC-Message-Signature: i=4; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=list-unsubscribe:list-archive:list-help:list-post:list-id
+         :mailing-list:precedence:cc:to:subject:message-id:date:from
+         :mime-version;
+        bh=VtSR3v0JJIGJFcUhyT6pH0iN8U0fMb3DWdwLjLVztKc=;
+        fh=WHbEbuwPeSFcoDfYcM4/+6OBWIglt6NLRn8Wslbg5hU=;
+        b=MxxaorOtBFDOJDDDR0LCfhEcghZ7cAE2HT3qIIvopEz5z4g+5h7YXatWLtiLrqqMMq
+         h1JsiMSL3UWkTWZCgQl8wfYawwWcrpI79EAjWaxyqYUqtAgyzbO4XHB1XL/i2G6mWEGk
+         kBJbySixdoDvUChxaEtRVEb0a7D0d6p5aeRKiHnBQUkZZ+LFvdsHicMq2JZdWmbgdEyO
+         MYx0uBLB9eOonqwo6SBkSoPnMl20BgvvL6eAdP5o/jOsV2ukGdB5B8it4gIvJK1W3MhZ
+         /qY/geqi07NULE/DBN4+jhNnNnemb6ClN6FczpjF/V5Pkse+w3ZcYGfGGXwy4S6sgU9W
+         feGQ==;
+        dara=google.com
+ARC-Authentication-Results: i=4; mx.google.com;
+       arc=pass (i=3 spf=pass spfdomain=jietjodhpur.ac.in);
+       spf=pass (google.com: domain of jiet2023_cse+bncbc2mtn47tearbkfsutkqmgqe53uzcda@jietjodhpur.ac.in designates 209.85.220.69 as permitted sender) smtp.mailfrom=jiet2023_cse+bncBC2MTN47TEARBKFSUTKQMGQE53UZCDA@jietjodhpur.ac.in;
+       dara=neutral header.i=@jietjodhpur.ac.in
+Return-Path: <jiet2023_cse+bncBC2MTN47TEARBKFSUTKQMGQE53UZCDA@jietjodhpur.ac.in>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id 5b1f17b1804b1-49e6860107fsor12415685e9.18.2026.09.15.03.08.41
+        for <krrishvardhan.23jics042@jietjodhpur.ac.in>
+        (Google Transport Security);
+        Tue, 15 Sep 2026 03:08:41 -0700 (PDT)
+Received-SPF: pass (google.com: domain of jiet2023_cse+bncbc2mtn47tearbkfsutkqmgqe53uzcda@jietjodhpur.ac.in designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       arc=pass (i=3 spf=pass spfdomain=jietjodhpur.ac.in);
+       spf=pass (google.com: domain of jiet2023_cse+bncbc2mtn47tearbkfsutkqmgqe53uzcda@jietjodhpur.ac.in designates 209.85.220.69 as permitted sender) smtp.mailfrom=jiet2023_cse+bncBC2MTN47TEARBKFSUTKQMGQE53UZCDA@jietjodhpur.ac.in;
+       dara=neutral header.i=@jietjodhpur.ac.in
+ARC-Seal: i=3; a=rsa-sha256; t=1789466921; cv=pass;
+        d=google.com; s=arc-20260327;
+        b=BJ112M2K4FONP3eUlIzGH3S2nfS/dSGfh7qe5hbvxGgMn6lx48mF5qbpu3MDfAVJ1O
+         pRNw1KWlDq/lOGjytiTng4Hbip8P5vs/AB6VHB7PhWAaDWA3J/U6/JO8dVppuomd+NoS
+         7eZS9IwLDU78FqqVXOV80UDXlMi/VggnV1XZrjKGmkZQ1Si79r8hvbXvNmcXlHG3UeIb
+         FIyqBT4tedPcqxcaC1VML5SvockFH7LxgIKqtG1sSBIpbpXSjpd6U0Ni7WR5h2rVPvnj
+         RPTDRI83C28T/dkkGdGSaAEfkTquy3qroM5zb6r69mVohTvX7hcOAuXMyG4dfenk0ghG
+         5RAQ==
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=list-unsubscribe:list-archive:list-help:list-post:list-id
+         :mailing-list:precedence:cc:to:subject:message-id:date:from
+         :mime-version;
+        bh=VtSR3v0JJIGJFcUhyT6pH0iN8U0fMb3DWdwLjLVztKc=;
+        fh=WHbEbuwPeSFcoDfYcM4/+6OBWIglt6NLRn8Wslbg5hU=;
+        b=lhumehf0mvALpvL6AJPAl9bEcPYY4YsMSTenBYVUTqbTDDA4FVmVd+nySwP8VywHvA
+         v8gSE6SPWTz9LcQ1BCoKSeX7KNoL9A3mPGrBMLFOgLUkcleeCC7wlobB434vX+zCBbq8
+         bMqovjkBCmsokU3dK3WrzRUfwH4LjG0cTSx3qzJ/395rAmQlwh0e3riUDaA1M7KvZiy1
+         K3mb2lvFsfOUk0skZgxZsou+LarU1Xxuxu7n0a0D6NuICCWWtMv0/fdNDrSK0zelEGrI
+         VYQobMn1dT2F6fIZdPJZ4xPKxp2Fs7LH3PLK/amonA5OdlY6fxm1t4xr5ny5FxyYxOMK
+         Zxkg==;
+        darn=jietjodhpur.ac.in
+ARC-Authentication-Results: i=3; mx.google.com;
+       dkim=permerror (no key for signature) header.i=@jietjodhpur.ac.in header.s=google header.b=W1W2njY6;
+       arc=pass (i=1);
+       spf=pass (google.com: domain of placement@jietjodhpur.ac.in designates 209.85.220.41 as permitted sender) smtp.mailfrom=placement@jietjodhpur.ac.in;
+       dara=neutral header.i=@jietjodhpur.ac.in
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789466921; x=1790071721;
+        h=list-unsubscribe:list-archive:list-help:list-post
+         :x-spam-checked-in-group:list-id:mailing-list:precedence
+         :x-original-authentication-results:x-original-sender:content-type:cc
+         :to:subject:message-id:date:from:mime-version:x-gm-gg:x-beenthere
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=VtSR3v0JJIGJFcUhyT6pH0iN8U0fMb3DWdwLjLVztKc=;
+        b=GKoQsoRObDlvcuHJZ6dT/KdZ/hyWM1wS14LVj/0DhFL+vZv4ECAbliQJOOEwKR4mbN
+         wJxB4KODzp72241QXEpNzszKsQagf7Vw3glcpfdPQAeDedQUXw2robk5SBXHiA9w+JAN
+         nP1MOeye17JR3iuCiBqGnY3p/WOa9Lq6/Dg5hDNw53T5KPrzSS7+4VcO6J1h/BBVbxV/
+         zS+NmPExY3zRz+WAAw+sdn8mt+8MhjYWgopOzloPVvKWmOK52P5mOImqDIpvwkH5/4Qg
+         9Z7LUDB1/g7BZouGFooUJL8yltb8i+2Cc6SECRf6HGnH3P4k7jfBAW2GkrryyJJogUL2
+         kOLQ==
+X-Forwarded-Encrypted: i=3; AKwUvBy3OqtkDe/xwqfg2e00yOsFs4j2FrHWXcTAQ01RCK7zpL5MM6p9/6YnIANY3Ta5B6TcOu1Ky0eBAUWkq6LJv00Ux3J9DZ7SPA==@jietjodhpur.ac.in
+X-Gm-Message-State: AFuF++nfWmV2i4ryGgq2NJpAjBBEwFAiD1gIMyytzmsUju9VD3Sg6PfG
+	KHLFDDn27nlBPbzArM5p3dD4hlCBMKthq8fSuM4iS3pd8rm3Pi/Rz2xW01nKVyCpQfy7Pw==
+X-Received: by 2002:a05:600c:4f87:b0:49d:93c:d903 with SMTP id 5b1f17b1804b1-49e7a66ac24mr70592775e9.20.1789466920594;
+        Tue, 15 Sep 2026 03:08:40 -0700 (PDT)
+X-BeenThere: jiet2023_cse@jietjodhpur.ac.in; h="ATskLder09rK+BHTqA+/9rs5VfPPe/of4/A7tD4ijLZM5/HKJA=="
+Received: by 2002:a05:600c:1c22:b0:49e:7a80:25bb with SMTP id
+ 5b1f17b1804b1-49e7a802af8ls20348605e9.0.-pod-prod-06-eu; Tue, 15 Sep 2026
+ 03:08:39 -0700 (PDT)
+X-Forwarded-Encrypted: i=3; AKwUvBws6KOkJLAPBdLQDduqEx/mbsDftoFyAjuR+LvaWwCZvVIjp0JD64g4b4eFAyoDeavyz0XcGbqhn7HcpDQ=@jietjodhpur.ac.in
+X-Received: by 2002:a05:600c:628f:b0:49d:1df6:2592 with SMTP id 5b1f17b1804b1-49e7a66ae3dmr73332175e9.21.1789466918438;
+        Tue, 15 Sep 2026 03:08:38 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1789466918; cv=pass;
+        d=google.com; s=arc-20260327;
+        b=XINd+jbGIdXpq8OxOuSngKxii/DqRwwpDMgyTEJLHOrNBtnuBTqmKGHNu7MqJTotBS
+         Y5ja1eH/I8V08PAp+zm/P4Pi6tThfa6xBL8mIGSMYgzDLbNfEQIIkhEhgvlqGrWasG0f
+         8tdmsCz4YH39CtbkZ6RPytFpK1fzUKn8pI+CJmb/V7J7tvFXVBTucubk7hmvLOLB4KPF
+         iYhsRfpe4F8AmJ4D9NfbexmVpQ6OxS9E/Dw1es0qM7PxPBLNnvtbbgzKnuIr/MbSEL5x
+         02m6LYR5iwmC1XLcoKeW4XD1e9sX5nvq47y7G9+E7gmsBGL9rmTqg4XDm/KHHE7G76xJ
+         hbZQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=VtSR3v0JJIGJFcUhyT6pH0iN8U0fMb3DWdwLjLVztKc=;
+        fh=kWZ4BH9hI0I3LJOvnJkYXfn/0n668A4wCeWupJVPx1g=;
+        b=l94yxGJFUWqgYU9DNbqonJIAZ8tZ0hCd52IXnH+wqH5ijOL24lYbR4OogV6YxmNfCF
+         MX/Atkp0tkxtcNBa20Xef28wqTZ+/x9jgj8g5OJna4yRCBSskGuvMBckQH3tlos5SSgx
+         +jI634xSzGDj16DQAzpq7M31ZY2BROdSFHpa4yid0XBJdznKfbl3kf7dXiu+v2dwfpYH
+         vn0t6JFDLyvKJmYKLkIdUyQOO7vtzNCZvx7Je+2qvWeMvMiGwj2bZZe8ULx7OGIHPMpG
+         /ls9uy9aT1LiRy4sOFh+D5VlkXkZrAHPQKvixhXI3LnxaEF5nYO4Z4k8rvO7YHS8wm9f
+         rsfg==;
+        dara=google.com
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=permerror (no key for signature) header.i=@jietjodhpur.ac.in header.s=google header.b=W1W2njY6;
+       arc=pass (i=1);
+       spf=pass (google.com: domain of placement@jietjodhpur.ac.in designates 209.85.220.41 as permitted sender) smtp.mailfrom=placement@jietjodhpur.ac.in;
+       dara=neutral header.i=@jietjodhpur.ac.in
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 5b1f17b1804b1-49e64e731ecsor16239465e9.15.2026.09.15.03.08.38
+        for <jiet2023_cse@jietjodhpur.ac.in>
+        (Google Transport Security);
+        Tue, 15 Sep 2026 03:08:38 -0700 (PDT)
+Received-SPF: pass (google.com: domain of placement@jietjodhpur.ac.in designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+ARC-Seal: i=1; a=rsa-sha256; t=1789466918; cv=none;
+        d=google.com; s=arc-20260327;
+        b=GOJtwDrmztGzVuEHVFk8w0KwlTWwZ3/r+UbECZ0UPvBuAANpX0wO3RAspMU8glSGs6
+         e1JqGomFpRxKRE1I3jMNnMqZZxSWTBD0A8ZkScynyaqi4HtTEhvu85NQT3WgEl0fZTsB
+         aFVtCHm3wckNEHMaP7y2mjzUC1zKQu1xildtHMUMyn41Ug7v8KGEtjmVMj8qYf4WApPo
+         GwrHdXiW4A+eSGcN3O+c+XPjQfYuxxCE1MHUIZX0WiPM/Uftlq/K6bRf12hidiKoFKpF
+         oXymNmdDI8Njm+DlWYECGyKGh0lehMg+vm4J67BBuPHYRH1L75R6z6WpAFVNiDgRafFV
+         tckg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=VtSR3v0JJIGJFcUhyT6pH0iN8U0fMb3DWdwLjLVztKc=;
+        fh=kWZ4BH9hI0I3LJOvnJkYXfn/0n668A4wCeWupJVPx1g=;
+        b=suZ+r0O2wgEPAcqIe7UkIPGSJ8sambMgjEiWUSOTbVF0PKNyaQmaR2dvL9BagII9sD
+         CSEagSCerT6mUuHPKyEpU/Nxol8OlkJoEqJRFxNhw36fLZQUE5Z7KzmlWFzX/RZHe6oS
+         PQhpyQVgReYMprigFsgNZYOeDBTqYG4sgJbu+ttN/2RPWNxjb9fbHWuOGvAUfYrU5B6m
+         nU4RgP2LNGTRHHdYfFs1tKX/MnMamDzQB8KbLy8cLhgpvfkITr2gW43NZI3SIWfRLq9I
+         iQCDO4NU6VZaAbVRvlwCKaI4aNYA7G07Ehqgu8cofADZ+XbrZkVT63zqfR8HhNRR6PLc
+         JXqA==;
+        darn=jietjodhpur.ac.in
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+X-Forwarded-Encrypted: i=1; AKwUvBywqi8cTnzHhZaAHeOwc21WS/qUDj6kwdHxlYfrwiE5TAlYcTMwlayrRBOygYjxj7BwVJ13PfbAN9mXgAo=@jietjodhpur.ac.in
+X-Gm-Gg: AYBFou3BC316Cs4dzuocqAHhK27AQ7ihzKTcN/JKpu0VsDa3GBAhyq69wBGp/a2XiOw
+	65Yk+XI4zu6DEd8U1Faqtxz30O0+UZrsyWwQq/SVSnW2ahf8S6UH0Ng4In1xplVpCdCzwXTDFOz
+	obqtZTGrryzbhxb6qSqU9UcFP8jGYXL6fx9ni+yVs7IZG2ZvB+yYitdnCC1aMusw25nvYro9pre
+	rEoOdFugZhZk+mPfg+Cqmoikp/JI/0oxr03dPJ1I8RJ6vV/fSF3RSviieFYd9oFv/c6OdqH2+Gn
+	VnY/nm/q1d+X7JOm1WybXuDJF9IioXjBV6WDpn+IgEfiq8yOuj6+OPQhM9x6zluX4GTtFi99dW2
+	nT498y7cDCunRituKwzki319/Sdkgi9PTamJMIGUUmIMEi5Zm4bj57w9y6IxhX69HF95v7Qk=
+X-Received: by 2002:a05:600c:35ce:b0:49d:17c5:8f7a with SMTP id
+ 5b1f17b1804b1-49e7a66a808mr97366655e9.18.1789466917683; Tue, 15 Sep 2026
+ 03:08:37 -0700 (PDT)
+MIME-Version: 1.0
+From: "JIET Training & Placement Cell" <placement@jietjodhpur.ac.in>
+Date: Tue, 15 Sep 2026 15:38:24 +0530
+X-Gm-Features: AcwNN1VIPpbzztdLIN-RLuf9yX2d75_WI6h9Au6CVl6tezoWvWIOCAsjIZBTWSc
+Message-ID: <CAAqhQjnJJG1f=SNLM7=2NVe0FZWqU4K0YCU+gz35yRfr6JO+Vw@mail.gmail.com>
+Subject: Nomination Form - Dataoxy Technologies | B.Tech-(CS, DS, CY, AI&ML),
+ BCA & MCA Batch 2027
+To: jiet2023_jdat@jietjodhpur.ac.in, jiet2023_cys@jietjodhpur.ac.in, 
+	jiet2023_cse@jietjodhpur.ac.in, jiet2023_tech@jietjodhpur.ac.in, 
+	JIET 2024 BCA <jiet2024_BCA@jietjodhpur.ac.in>, 
+	JIET2025_MCA <JIET2025_MCA@jietjodhpur.ac.in>
+Cc: JIET FAMILY <jietfamily@jietjodhpur.ac.in>, Dipti Lodha <diptilodha@poornima.org>, 
+	tpo@poornima.org, "Kamal Kumar Sharma(6131)" <kamal.sharma@poornima.org>
+Content-Type: multipart/mixed; boundary="000000000000f76911065b82bbba"
+X-Original-Sender: placement@jietjodhpur.ac.in
+X-Original-Authentication-Results: mx.google.com;       dkim=permerror (no key
+ for signature) header.i=@jietjodhpur.ac.in header.s=google header.b=W1W2njY6;
+       arc=pass (i=1);       spf=pass (google.com: domain of
+ placement@jietjodhpur.ac.in designates 209.85.220.41 as permitted sender)
+ smtp.mailfrom=placement@jietjodhpur.ac.in;       dara=neutral header.i=@jietjodhpur.ac.in
+Precedence: list
+Mailing-list: list jiet2023_cse@jietjodhpur.ac.in; contact jiet2023_cse+owners@jietjodhpur.ac.in
+List-ID: <jiet2023_cse.jietjodhpur.ac.in>
+X-Spam-Checked-In-Group: jiet2023_cse@jietjodhpur.ac.in
+X-Google-Group-Id: 1001727065057
+List-Post: <https://groups.google.com/a/jietjodhpur.ac.in/group/jiet2023_cse/post>,
+ <mailto:jiet2023_cse@jietjodhpur.ac.in>
+List-Help: <https://support.google.com/a/jietjodhpur.ac.in/bin/topic.py?topic=25838>,
+ <mailto:jiet2023_cse+help@jietjodhpur.ac.in>
+List-Archive: <https://groups.google.com/a/jietjodhpur.ac.in/group/jiet2023_cse/>
+List-Unsubscribe: <mailto:googlegroups-manage+1001727065057+unsubscribe@googlegroups.com>,
+ <https://groups.google.com/a/jietjodhpur.ac.in/group/jiet2023_cse/subscribe>
+
+--000000000000f76911065b82bbba
+Content-Type: multipart/alternative; boundary="000000000000f76910065b82bbb8"
+
+--000000000000f76910065b82bbb8
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Dear Students,
+
+
+We are pleased to inform you that *Dataoxy Technologies *wishes to hire
+students of *B.Tech-(CS, DS, CY, AI&ML), BCA & MCA Batch 2027**.* Students
+are advised to go through the description carefully and provide
+their nomination for participation by filling the Google Form.
+
+
+*Dates of drive*: Coming few days in Virtual or Physical mode. (As per
+company=E2=80=99s discretion)
+
+
+*Note: Students are required to provide the nominations before the
+deadline. Post-deadline no entries will be considered for the
+drive. Students who wish to take a dream slot are required to email the
+dream slot application email on * *placement@jietjodhpur.ac.in
+<placement@jietjodhpur.ac.in>*  * and fill the Google form before the
+deadline. **(**Deadline: 17 September, 2026 till 8:00 AM**).*
+
+
+*Eligibility Criteria:*
+
+#  B.Tech-(CS, DS, CY, AI&ML), BCA & MCA Batch 2027
+
+# Upto Four Backlogs.
+
+# CAT-  *III*   .
+
+# TCS-iON Active students.
+
+
+*NOTE:  **I* and *II* category students can apply to companies in their own
+category or lower category, provided they meet the company's above specific
+eligibility criteria. Meaning *I* category students can apply for *II* &
+*III* category companies and *II* category students can apply for
+*III* category
+companies.*As we have one student one placement policy* - give
+your nomination only after going through the job profile carefully and if
+you wish to join the company post selection.
+
+
+*List of eligible students for the Google form is attached herewith.*
+
+
+*About the Company: Dataoxy Technologies *own Excellency in crafting ideas
+into reality with 8 years of experience in IT Solutions, we give life to
+imaginations. With 100+ completed projects and 100% satisfaction, we are
+leading in the market as top Startups Expansion Company. We started Dataoxy
+Technologies why? We Believe, that Expertized with Structured Software
+Design & Development As on Customer Expectations and Satisfaction
+
+
+*Website: https://www.dataoxytechnologies.com/
+<https://www.dataoxytechnologies.com/>*
+
+
+*Job Roles: *IT Sales Intern
+
+
+
+*Job Description: *
+
+
+
+*Key Responsibilities:*
+1. Lead generation and client acquisition for IT solutions
+2. Cold Calling
+3. Product & Servies Demonstration
+4. Handling client communications and relationship management
+5. Preparing sales presentations and proposals
+6. Assisting in market research and competitor analysis
+
+
+
+*Compensation:*
+
+
+
+*Stipend:* =E2=82=B910,000 per month
+
+*Internship Duration:* 3 Months and full time
+
+Upon successful completion, interns may also be considered for full-time
+opportunities based on performance.
+
+
+
+*INR CTC upto 4 lakh per annum* after successful completion of internship
+
+
+
+*Components in Salary*
+
+*Monthly (INR)*
+
+*Annually (INR)*
+
+Basic Salary
+
+5,000
+
+60,000
+
+HRA
+
+2,000
+
+24,000
+
+Conveyance Allowance
+
+1,500
+
+18,000
+
+Medical Allowance
+
+1,500
+
+18,000
+
+Gross Salary (Net Salary)
+
+10,000
+
+1,20,000
+
+Performance Incentives
+
+20,000
+
+2,40,000
+
+Annual Bonus
+
+13,334
+
+1,60,008
+
+*CTC*
+
+*43,334*
+
+*5,20,008*
+
+
+
+*Joining:* Immediate
+
+
+
+*Location: *Jaipur
+
+
+
+*Selection Process:*
+
+1. Resume shortlisting (Students are required to prepare a resume as per
+the Job Description and skills requirement shared by the company in above
+email)
+
+2. Group Discussion/Online Test
+
+3. Technical Interviews
+
+4. Personal/HR Interviews
+
+
+
+*All interested students can apply for the same via below mentioned Google
+form*
+
+
+
+*Google form link: https://forms.gle/75htoxHBBQRbXpCr8
+<https://forms.gle/75htoxHBBQRbXpCr8>*
+
+--=20
+
+*For any query, you may contact your Department T&P Coordinator*
+
+
+*Ms. Priyanka Uchawani **- 8890013365*
+
+
+
+*Best Wishes,*
+
+*Er. Sanjay Bhandari *
+
+*Training & Placement Officer*
+
+*JIET Group of Institutions*
+
+*Tel: 02912868152 / Mob: ** 9001895780*
+
+*Website: www.jietjodhpur.ac.in <http://www.jietjodhpur.ac.in/>*
+
+--=20
+
+
+
+
+This email and the=C2=A0information=C2=A0it contains are confidential and m=
+ay be=20
+privileged. If you have received this email in error please notify=C2=A0us=
+=C2=A0
+immediately. You should not copy it for any purpose, or disclose its=20
+contents to any other person. Internet communications are not secure and,=
+=20
+therefore,=C2=A0JIET Group of Institutions=C2=A0does not accept legal respo=
+nsibility=20
+for the contents of this message as it has been transmitted over a public=
+=20
+network. If you suspect the message may have been intercepted or amended=20
+please contact us.
+
+--000000000000f76910065b82bbb8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div><div class=3D"gmail_default" style=
+=3D"font-family:verdana,sans-serif"><span style=3D"font-family:Verdana,sans=
+-serif;font-size:10pt;background-color:transparent">Dear Students,</span></=
+div><p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;font-size=
+:11pt;font-family:Calibri,sans-serif"><br></p><p class=3D"MsoNormal" style=
+=3D"margin:0cm;line-height:normal"><span style=3D"font-size:10pt;font-famil=
+y:Verdana,sans-serif">We are pleased to inform you that=C2=A0<b>Dataoxy Tec=
+hnologies=C2=A0</b>wishes to hire students of<b>=C2=A0</b></span><font face=
+=3D"verdana, sans-serif"><b>B.Tech-(CS, DS, CY, AI&amp;ML), BCA &amp; MCA B=
+atch 2027</b></font><span style=3D"font-size:10pt;font-family:Verdana,sans-=
+serif"><b>.</b>=C2=A0Students are advised to go through the description car=
+efully and provide their=C2=A0nomination=C2=A0for participation by filling =
+the Google=C2=A0Form.</span></p><p class=3D"MsoNormal" style=3D"margin:0cm;=
+line-height:normal;font-size:11pt;font-family:Calibri,sans-serif"><br></p><=
+p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;font-size:11pt=
+;font-family:Calibri,sans-serif"><b><span style=3D"font-size:10pt;font-fami=
+ly:Verdana,sans-serif">Dates of drive</span></b><span style=3D"font-size:10=
+pt;font-family:Verdana,sans-serif">: Coming few days in Virtual or Physical=
+ mode. (As per company=E2=80=99s discretion)</span></p><p class=3D"MsoNorma=
+l" style=3D"margin:0cm;line-height:normal;font-size:11pt;font-family:Calibr=
+i,sans-serif"><br></p><p class=3D"MsoNormal" style=3D"margin:0cm;line-heigh=
+t:normal;font-size:11pt;font-family:Calibri,sans-serif"><b><span style=3D"f=
+ont-size:10pt;font-family:Verdana,sans-serif;background:lime">Note: Student=
+s are required to provide the=C2=A0nominations=C2=A0before the deadline. Po=
+st-deadline no entries will be considered for the drive.=C2=A0Students who =
+wish to take a dream slot are required to email the dream slot=C2=A0applica=
+tion email=C2=A0on=C2=A0</span></b>
+
+<b style=3D"font-family:verdana,sans-serif;font-size:small;text-align:justi=
+fy"><span style=3D"background-image:initial;background-position:initial;bac=
+kground-size:initial;background-repeat:initial;background-origin:initial;ba=
+ckground-clip:initial"><span style=3D"background-color:lime;color:black"><a=
+ href=3D"mailto:placement@jietjodhpur.ac.in" target=3D"_blank" style=3D"col=
+or:blue"><span style=3D"color:rgb(17,85,204)">placement@jietjodhpur.ac.in</=
+span></a></span></span></b>=C2=A0=C2=A0<b><span style=3D"font-size:10pt;fon=
+t-family:Verdana,sans-serif;background:lime">=C2=A0and fill the Google=C2=
+=A0form=C2=A0before the deadline.=C2=A0</span></b><b style=3D"font-size:11p=
+t;background-color:transparent"><span style=3D"font-size:10pt;font-family:V=
+erdana,sans-serif;background:lime">(</span></b><b style=3D"font-size:11pt;b=
+ackground-color:transparent"><span style=3D"font-size:10pt;font-family:Verd=
+ana,sans-serif;background:yellow">Deadline: 17 September, 2026 till 8:00 AM=
+</span></b><b style=3D"font-size:11pt;background-color:transparent"><span s=
+tyle=3D"font-size:10pt;font-family:Verdana,sans-serif;background:lime">).</=
+span></b></p><p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;=
+font-size:11pt;font-family:Calibri,sans-serif"><br></p><p class=3D"MsoNorma=
+l" style=3D"margin:0cm;line-height:normal;font-size:11pt;font-family:Calibr=
+i,sans-serif"><b><span style=3D"font-size:10pt;font-family:Verdana,sans-ser=
+if">Eligibility Criteria:</span></b><span style=3D"font-size:10pt;font-fami=
+ly:Verdana,sans-serif"></span></p><p class=3D"MsoNormal" style=3D"margin:0c=
+m;line-height:normal;font-size:11pt"><span style=3D"font-family:Verdana,san=
+s-serif;font-size:10pt">#=C2=A0</span><span style=3D"font-family:Arial,Helv=
+etica,sans-serif;font-size:small;background-color:transparent">=C2=A0</span=
+><span style=3D"font-size:small;background-color:transparent"><font face=3D=
+"verdana, sans-serif">B.Tech-(CS, DS, CY, AI&amp;ML), BCA &amp; MCA Batch 2=
+027</font></span></p><p class=3D"MsoNormal" style=3D"margin:0cm;line-height=
+:normal;font-size:11pt;font-family:Calibri,sans-serif"><span style=3D"font-=
+size:10pt;font-family:Verdana,sans-serif">#=C2=A0Upto Four Backlogs.</span>=
+</p><p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;font-size=
+:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fa=
+mily:Verdana,sans-serif"># CAT-</span>
+
+<span style=3D"background-color:rgb(255,255,255)"><span style=3D"font-famil=
+y:verdana,sans-serif;font-size:small;text-align:justify">=C2=A0</span><b st=
+yle=3D"font-family:verdana,sans-serif;font-size:small;text-align:justify">I=
+II</b><span style=3D"font-family:verdana,sans-serif;font-size:small;text-al=
+ign:justify">=C2=A0</span>=C2=A0=C2=A0<span style=3D"font-size:10pt;font-fa=
+mily:Verdana,sans-serif">.</span></span></p><p class=3D"MsoNormal" style=3D=
+"margin:0cm;line-height:normal;font-size:11pt;font-family:Calibri,sans-seri=
+f"><span style=3D"font-size:10pt;font-family:Verdana,sans-serif"># TCS-iON =
+Active students.</span></p><p class=3D"MsoNormal" style=3D"margin:0cm;line-=
+height:normal;font-size:11pt;font-family:Calibri,sans-serif"><br></p><p cla=
+ss=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;font-size:11pt;font=
+-family:Calibri,sans-serif"><font style=3D"font-family:verdana,sans-serif;f=
+ont-size:small;text-align:justify"><b><span style=3D"background:yellow">NOT=
+E:=C2=A0=C2=A0</span></b></font><span style=3D"font-family:verdana,sans-ser=
+if;font-size:small;text-align:justify;background:yellow"><b>I</b>=C2=A0and=
+=C2=A0<b>II</b>=C2=A0category students can apply to companies in their own =
+category or lower category, provided they meet the company&#39;s above spec=
+ific eligibility criteria. Meaning=C2=A0<b>I</b>=C2=A0category students can=
+ apply for=C2=A0<b>II</b>=C2=A0&amp;=C2=A0<b>III</b>=C2=A0category companie=
+s and=C2=A0<b>II</b>=C2=A0category students can apply for=C2=A0<b>III</b>=
+=C2=A0category companies.</span><b style=3D"font-family:verdana,sans-serif;=
+font-size:small;background-color:transparent;text-align:justify"><span styl=
+e=3D"background:yellow">As we have one student one placement policy</span><=
+/b><span style=3D"font-family:verdana,sans-serif;font-size:small;text-align=
+:justify;background:yellow">=C2=A0- give your=C2=A0nomination=C2=A0only aft=
+er going through the job profile carefully and if you wish to join the comp=
+any post selection.</span></p><p class=3D"MsoNormal" style=3D"margin:0cm;li=
+ne-height:normal;font-size:11pt;font-family:Calibri,sans-serif"><br></p><p =
+class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;font-size:11pt;f=
+ont-family:Calibri,sans-serif"><b><u><span style=3D"font-size:10pt;font-fam=
+ily:Verdana,sans-serif">List of eligible students for the Google=C2=A0form=
+=C2=A0is attached herewith.</span></u></b><span style=3D"font-size:10pt;fon=
+t-family:Verdana,sans-serif"></span></p><p class=3D"MsoNormal" style=3D"mar=
+gin:0cm;line-height:normal;font-size:11pt;font-family:Calibri,sans-serif"><=
+br></p><p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;font-s=
+ize:11pt;font-family:Calibri,sans-serif"><b><span style=3D"font-size:10pt;f=
+ont-family:Verdana,sans-serif"><span class=3D"gmail_default" style=3D"font-=
+family:verdana,sans-serif;font-size:small"></span></span></b><b style=3D"fo=
+nt-size:11pt;background-color:transparent"><span style=3D"font-size:10pt;fo=
+nt-family:Verdana,sans-serif">About the Company:=C2=A0Dataoxy Technologies=
+=C2=A0</span></b><span style=3D"background-color:transparent;font-size:10pt=
+;font-family:Verdana,sans-serif">own Excellency in crafting ideas into real=
+ity with 8 years of experience in IT Solutions, we give life to imagination=
+s. With 100+ completed projects and 100% satisfaction, we are leading in th=
+e market as top Startups Expansion Company. We started Dataoxy Technologies=
+ why? We Believe, that Expertized with Structured Software Design &amp; Dev=
+elopment As on Customer Expectations and Satisfaction</span></p><p class=3D=
+"MsoNormal" style=3D"margin:0cm;line-height:normal;font-size:11pt;font-fami=
+ly:Calibri,sans-serif"><br></p><p class=3D"MsoNormal" style=3D"margin:0cm;l=
+ine-height:normal;font-size:11pt;font-family:Calibri,sans-serif"><b><span s=
+tyle=3D"font-size:10pt;font-family:Verdana,sans-serif">Website:=C2=A0<a hre=
+f=3D"https://www.dataoxytechnologies.com/" target=3D"_blank" style=3D"color=
+:rgb(5,99,193)">https://www.dataoxytechnologies.com/</a></span></b></p><p c=
+lass=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;font-size:11pt;fo=
+nt-family:Calibri,sans-serif"><br></p><p class=3D"MsoNormal" style=3D"margi=
+n:0cm;line-height:normal;font-size:11pt;font-family:Calibri,sans-serif"><b>=
+<span style=3D"font-size:10pt;font-family:Verdana,sans-serif">Job Roles:=C2=
+=A0</span></b><span style=3D"font-size:10pt;font-family:Verdana,sans-serif"=
+>IT Sales Intern</span></p><p class=3D"MsoNormal" style=3D"margin:0cm;line-=
+height:normal;font-size:11pt;font-family:Calibri,sans-serif"><b><span style=
+=3D"font-size:10pt;font-family:Verdana,sans-serif">=C2=A0</span></b><span s=
+tyle=3D"font-size:10pt;font-family:Verdana,sans-serif"></span></p><p class=
+=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;font-size:11pt;font-f=
+amily:Calibri,sans-serif"><b><span style=3D"font-size:10pt;font-family:Verd=
+ana,sans-serif">Job Description:=C2=A0</span></b></p><p class=3D"MsoNormal"=
+ style=3D"margin:0cm;line-height:normal;font-size:11pt;font-family:Calibri,=
+sans-serif"><span style=3D"font-size:10pt;font-family:Verdana,sans-serif">=
+=C2=A0</span></p><p class=3D"MsoNormal" style=3D"margin:0cm;line-height:nor=
+mal;font-size:11pt;font-family:Calibri,sans-serif"><b><span style=3D"font-s=
+ize:10pt;font-family:Verdana,sans-serif">Key Responsibilities:</span></b><s=
+pan style=3D"font-size:10pt;font-family:Verdana,sans-serif"><br>1. Lead gen=
+eration and client acquisition for IT solutions<br>2. Cold Calling<br>3. Pr=
+oduct &amp; Servies Demonstration<br>4. Handling client communications and =
+relationship management<br>5. Preparing sales presentations and proposals<b=
+r>6. Assisting in market research and competitor analysis</span></p><p clas=
+s=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;font-size:11pt;font-=
+family:Calibri,sans-serif"><b><span style=3D"font-size:10pt;font-family:Ver=
+dana,sans-serif">=C2=A0</span></b><span style=3D"font-size:10pt;font-family=
+:Verdana,sans-serif"></span></p><p class=3D"MsoNormal" style=3D"margin:0cm;=
+line-height:normal;font-size:11pt;font-family:Calibri,sans-serif"><b><span =
+style=3D"font-size:10pt;font-family:Verdana,sans-serif">Compensation:</span=
+></b></p><p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;font=
+-size:11pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;fo=
+nt-family:Verdana,sans-serif">=C2=A0</span></p><p class=3D"MsoNormal" style=
+=3D"margin:0cm;line-height:normal;font-size:11pt;font-family:Calibri,sans-s=
+erif"><b><span style=3D"font-size:10pt;font-family:Verdana,sans-serif">Stip=
+end:</span></b><span style=3D"font-size:10pt;font-family:Verdana,sans-serif=
+">=C2=A0=E2=82=B910,000 per month</span></p><p class=3D"MsoNormal" style=3D=
+"margin:0cm;line-height:normal;font-size:11pt;font-family:Calibri,sans-seri=
+f"><b><span style=3D"font-size:10pt;font-family:Verdana,sans-serif">Interns=
+hip Duration:</span></b><span style=3D"font-size:10pt;font-family:Verdana,s=
+ans-serif">=C2=A03 Months and full time</span></p><p class=3D"MsoNormal" st=
+yle=3D"margin:0cm;line-height:normal;font-size:11pt;font-family:Calibri,san=
+s-serif"><span style=3D"font-size:10pt;font-family:Verdana,sans-serif">Upon=
+ successful completion, interns may also be considered for full-time opport=
+unities based on performance.</span></p><p class=3D"MsoNormal" style=3D"mar=
+gin:0cm;line-height:normal;font-size:11pt;font-family:Calibri,sans-serif"><=
+span style=3D"font-size:10pt;font-family:Verdana,sans-serif">=C2=A0</span><=
+/p><p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;font-size:=
+11pt;font-family:Calibri,sans-serif"><b><span style=3D"font-size:10pt;font-=
+family:Verdana,sans-serif;background:lime"><span class=3D"gmail_default" st=
+yle=3D"font-family:verdana,sans-serif;font-size:small">INR=C2=A0</span>CTC =
+upto 4 lakh per annum</span></b><span style=3D"font-size:10pt;font-family:V=
+erdana,sans-serif">=C2=A0after successful completion of internship</span></=
+p><p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;font-size:1=
+1pt;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-fami=
+ly:Verdana,sans-serif">=C2=A0</span></p><table border=3D"0" cellspacing=3D"=
+0" cellpadding=3D"0" width=3D"397" style=3D"width:297.45pt;border-collapse:=
+collapse"><tbody><tr style=3D"height:15pt"><td width=3D"160" nowrap valign=
+=3D"bottom" style=3D"width:120pt;border:1pt solid windowtext;padding:0cm 5.=
+4pt;height:15pt"><p class=3D"MsoNormal" style=3D"margin:0cm;line-height:nor=
+mal"><b><span style=3D"color:black"><font face=3D"verdana, sans-serif">Comp=
+onents in Salary</font></span></b></p></td><td width=3D"114" nowrap valign=
+=3D"bottom" style=3D"width:85.3pt;border-width:1pt 1pt 1pt medium;border-st=
+yle:solid solid solid none;border-color:windowtext windowtext windowtext cu=
+rrentcolor;padding:0cm 5.4pt;height:15pt"><p class=3D"MsoNormal" align=3D"c=
+enter" style=3D"margin:0cm;text-align:center;line-height:normal"><b><span s=
+tyle=3D"color:black"><font face=3D"verdana, sans-serif">Monthly (INR)</font=
+></span></b></p></td><td width=3D"123" nowrap valign=3D"bottom" style=3D"wi=
+dth:92.15pt;border-width:1pt 1pt 1pt medium;border-style:solid solid solid =
+none;border-color:windowtext windowtext windowtext currentcolor;padding:0cm=
+ 5.4pt;height:15pt"><p class=3D"MsoNormal" align=3D"center" style=3D"margin=
+:0cm;text-align:center;line-height:normal"><b><span style=3D"color:black"><=
+font face=3D"verdana, sans-serif">Annually (INR)</font></span></b></p></td>=
+</tr><tr style=3D"height:15pt"><td width=3D"160" nowrap valign=3D"bottom" s=
+tyle=3D"width:120pt;border-width:medium 1pt 1pt;border-style:none solid sol=
+id;border-color:currentcolor windowtext windowtext;padding:0cm 5.4pt;height=
+:15pt"><p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal"><span=
+ style=3D"color:black"><font face=3D"verdana, sans-serif">Basic Salary</fon=
+t></span></p></td><td width=3D"114" nowrap valign=3D"bottom" style=3D"width=
+:85.3pt;border-width:medium 1pt 1pt medium;border-style:none solid solid no=
+ne;border-color:currentcolor windowtext windowtext currentcolor;padding:0cm=
+ 5.4pt;height:15pt"><p class=3D"MsoNormal" align=3D"center" style=3D"margin=
+:0cm;text-align:center;line-height:normal"><span style=3D"color:black"><fon=
+t face=3D"verdana, sans-serif">5,000</font></span></p></td><td width=3D"123=
+" nowrap valign=3D"bottom" style=3D"width:92.15pt;border-width:medium 1pt 1=
+pt medium;border-style:none solid solid none;border-color:currentcolor wind=
+owtext windowtext currentcolor;padding:0cm 5.4pt;height:15pt"><p class=3D"M=
+soNormal" align=3D"center" style=3D"margin:0cm;text-align:center;line-heigh=
+t:normal"><span style=3D"color:black"><font face=3D"verdana, sans-serif">60=
+,000</font></span></p></td></tr><tr style=3D"height:15pt"><td width=3D"160"=
+ nowrap valign=3D"bottom" style=3D"width:120pt;border-width:medium 1pt 1pt;=
+border-style:none solid solid;border-color:currentcolor windowtext windowte=
+xt;padding:0cm 5.4pt;height:15pt"><p class=3D"MsoNormal" style=3D"margin:0c=
+m;line-height:normal"><span style=3D"color:black"><font face=3D"verdana, sa=
+ns-serif">HRA</font></span></p></td><td width=3D"114" nowrap valign=3D"bott=
+om" style=3D"width:85.3pt;border-width:medium 1pt 1pt medium;border-style:n=
+one solid solid none;border-color:currentcolor windowtext windowtext curren=
+tcolor;padding:0cm 5.4pt;height:15pt"><p class=3D"MsoNormal" align=3D"cente=
+r" style=3D"margin:0cm;text-align:center;line-height:normal"><span style=3D=
+"color:black"><font face=3D"verdana, sans-serif">2,000</font></span></p></t=
+d><td width=3D"123" nowrap valign=3D"bottom" style=3D"width:92.15pt;border-=
+width:medium 1pt 1pt medium;border-style:none solid solid none;border-color=
+:currentcolor windowtext windowtext currentcolor;padding:0cm 5.4pt;height:1=
+5pt"><p class=3D"MsoNormal" align=3D"center" style=3D"margin:0cm;text-align=
+:center;line-height:normal"><span style=3D"color:black"><font face=3D"verda=
+na, sans-serif">24,000</font></span></p></td></tr><tr style=3D"height:15pt"=
+><td width=3D"160" nowrap valign=3D"bottom" style=3D"width:120pt;border-wid=
+th:medium 1pt 1pt;border-style:none solid solid;border-color:currentcolor w=
+indowtext windowtext;padding:0cm 5.4pt;height:15pt"><p class=3D"MsoNormal" =
+style=3D"margin:0cm;line-height:normal"><span style=3D"color:black"><font f=
+ace=3D"verdana, sans-serif">Conveyance Allowance</font></span></p></td><td =
+width=3D"114" nowrap valign=3D"bottom" style=3D"width:85.3pt;border-width:m=
+edium 1pt 1pt medium;border-style:none solid solid none;border-color:curren=
+tcolor windowtext windowtext currentcolor;padding:0cm 5.4pt;height:15pt"><p=
+ class=3D"MsoNormal" align=3D"center" style=3D"margin:0cm;text-align:center=
+;line-height:normal"><span style=3D"color:black"><font face=3D"verdana, san=
+s-serif">1,500</font></span></p></td><td width=3D"123" nowrap valign=3D"bot=
+tom" style=3D"width:92.15pt;border-width:medium 1pt 1pt medium;border-style=
+:none solid solid none;border-color:currentcolor windowtext windowtext curr=
+entcolor;padding:0cm 5.4pt;height:15pt"><p class=3D"MsoNormal" align=3D"cen=
+ter" style=3D"margin:0cm;text-align:center;line-height:normal"><span style=
+=3D"color:black"><font face=3D"verdana, sans-serif">18,000</font></span></p=
+></td></tr><tr style=3D"height:15pt"><td width=3D"160" nowrap valign=3D"bot=
+tom" style=3D"width:120pt;border-width:medium 1pt 1pt;border-style:none sol=
+id solid;border-color:currentcolor windowtext windowtext;padding:0cm 5.4pt;=
+height:15pt"><p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal"=
+><span style=3D"color:black"><font face=3D"verdana, sans-serif">Medical All=
+owance</font></span></p></td><td width=3D"114" nowrap valign=3D"bottom" sty=
+le=3D"width:85.3pt;border-width:medium 1pt 1pt medium;border-style:none sol=
+id solid none;border-color:currentcolor windowtext windowtext currentcolor;=
+padding:0cm 5.4pt;height:15pt"><p class=3D"MsoNormal" align=3D"center" styl=
+e=3D"margin:0cm;text-align:center;line-height:normal"><span style=3D"color:=
+black"><font face=3D"verdana, sans-serif">1,500</font></span></p></td><td w=
+idth=3D"123" nowrap valign=3D"bottom" style=3D"width:92.15pt;border-width:m=
+edium 1pt 1pt medium;border-style:none solid solid none;border-color:curren=
+tcolor windowtext windowtext currentcolor;padding:0cm 5.4pt;height:15pt"><p=
+ class=3D"MsoNormal" align=3D"center" style=3D"margin:0cm;text-align:center=
+;line-height:normal"><span style=3D"color:black"><font face=3D"verdana, san=
+s-serif">18,000</font></span></p></td></tr><tr style=3D"height:15pt"><td wi=
+dth=3D"160" nowrap valign=3D"bottom" style=3D"width:120pt;border-width:medi=
+um 1pt 1pt;border-style:none solid solid;border-color:currentcolor windowte=
+xt windowtext;padding:0cm 5.4pt;height:15pt"><p class=3D"MsoNormal" style=
+=3D"margin:0cm;line-height:normal"><span style=3D"color:black"><font face=
+=3D"verdana, sans-serif">Gross Salary (Net Salary)</font></span></p></td><t=
+d width=3D"114" nowrap valign=3D"bottom" style=3D"width:85.3pt;border-width=
+:medium 1pt 1pt medium;border-style:none solid solid none;border-color:curr=
+entcolor windowtext windowtext currentcolor;padding:0cm 5.4pt;height:15pt">=
+<p class=3D"MsoNormal" align=3D"center" style=3D"margin:0cm;text-align:cent=
+er;line-height:normal"><span style=3D"color:black"><font face=3D"verdana, s=
+ans-serif">10,000</font></span></p></td><td width=3D"123" nowrap valign=3D"=
+bottom" style=3D"width:92.15pt;border-width:medium 1pt 1pt medium;border-st=
+yle:none solid solid none;border-color:currentcolor windowtext windowtext c=
+urrentcolor;padding:0cm 5.4pt;height:15pt"><p class=3D"MsoNormal" align=3D"=
+center" style=3D"margin:0cm;text-align:center;line-height:normal"><span sty=
+le=3D"color:black"><font face=3D"verdana, sans-serif">1,20,000</font></span=
+></p></td></tr><tr style=3D"height:15pt"><td width=3D"160" nowrap valign=3D=
+"bottom" style=3D"width:120pt;border-width:medium 1pt 1pt;border-style:none=
+ solid solid;border-color:currentcolor windowtext windowtext;padding:0cm 5.=
+4pt;height:15pt"><p class=3D"MsoNormal" style=3D"margin:0cm;line-height:nor=
+mal"><span style=3D"color:black"><font face=3D"verdana, sans-serif">Perform=
+ance Incentives</font></span></p></td><td width=3D"114" nowrap valign=3D"bo=
+ttom" style=3D"width:85.3pt;border-width:medium 1pt 1pt medium;border-style=
+:none solid solid none;border-color:currentcolor windowtext windowtext curr=
+entcolor;padding:0cm 5.4pt;height:15pt"><p class=3D"MsoNormal" align=3D"cen=
+ter" style=3D"margin:0cm;text-align:center;line-height:normal"><span style=
+=3D"color:black"><font face=3D"verdana, sans-serif">20,000</font></span></p=
+></td><td width=3D"123" nowrap valign=3D"bottom" style=3D"width:92.15pt;bor=
+der-width:medium 1pt 1pt medium;border-style:none solid solid none;border-c=
+olor:currentcolor windowtext windowtext currentcolor;padding:0cm 5.4pt;heig=
+ht:15pt"><p class=3D"MsoNormal" align=3D"center" style=3D"margin:0cm;text-a=
+lign:center;line-height:normal"><span style=3D"color:black"><font face=3D"v=
+erdana, sans-serif">2,40,000</font></span></p></td></tr><tr style=3D"height=
+:15pt"><td width=3D"160" nowrap valign=3D"bottom" style=3D"width:120pt;bord=
+er-width:medium 1pt 1pt;border-style:none solid solid;border-color:currentc=
+olor windowtext windowtext;padding:0cm 5.4pt;height:15pt"><p class=3D"MsoNo=
+rmal" style=3D"margin:0cm;line-height:normal"><span style=3D"color:black"><=
+font face=3D"verdana, sans-serif">Annual Bonus</font></span></p></td><td wi=
+dth=3D"114" nowrap valign=3D"bottom" style=3D"width:85.3pt;border-width:med=
+ium 1pt 1pt medium;border-style:none solid solid none;border-color:currentc=
+olor windowtext windowtext currentcolor;padding:0cm 5.4pt;height:15pt"><p c=
+lass=3D"MsoNormal" align=3D"center" style=3D"margin:0cm;text-align:center;l=
+ine-height:normal"><span style=3D"color:black"><font face=3D"verdana, sans-=
+serif">13,334</font></span></p></td><td width=3D"123" nowrap valign=3D"bott=
+om" style=3D"width:92.15pt;border-width:medium 1pt 1pt medium;border-style:=
+none solid solid none;border-color:currentcolor windowtext windowtext curre=
+ntcolor;padding:0cm 5.4pt;height:15pt"><p class=3D"MsoNormal" align=3D"cent=
+er" style=3D"margin:0cm;text-align:center;line-height:normal"><span style=
+=3D"color:black"><font face=3D"verdana, sans-serif">1,60,008</font></span><=
+/p></td></tr><tr style=3D"height:15pt"><td width=3D"160" nowrap valign=3D"b=
+ottom" style=3D"width:120pt;border-width:medium 1pt 1pt;border-style:none s=
+olid solid;border-color:currentcolor windowtext windowtext;padding:0cm 5.4p=
+t;height:15pt"><p class=3D"MsoNormal" style=3D"margin:0cm;line-height:norma=
+l"><b><span style=3D"color:black"><font face=3D"verdana, sans-serif">CTC</f=
+ont></span></b></p></td><td width=3D"114" nowrap valign=3D"bottom" style=3D=
+"width:85.3pt;border-width:medium 1pt 1pt medium;border-style:none solid so=
+lid none;border-color:currentcolor windowtext windowtext currentcolor;paddi=
+ng:0cm 5.4pt;height:15pt"><p class=3D"MsoNormal" align=3D"center" style=3D"=
+margin:0cm;text-align:center;line-height:normal"><b><span style=3D"color:bl=
+ack"><font face=3D"verdana, sans-serif">43,334</font></span></b></p></td><t=
+d width=3D"123" nowrap valign=3D"bottom" style=3D"width:92.15pt;border-widt=
+h:medium 1pt 1pt medium;border-style:none solid solid none;border-color:cur=
+rentcolor windowtext windowtext currentcolor;padding:0cm 5.4pt;height:15pt"=
+><p class=3D"MsoNormal" align=3D"center" style=3D"margin:0cm;text-align:cen=
+ter;line-height:normal"><b><span style=3D"color:black"><font face=3D"verdan=
+a, sans-serif">5,20,008</font></span></b></p></td></tr></tbody></table><p c=
+lass=3D"MsoNormal" style=3D"margin:0cm;line-height:normal"><font face=3D"ve=
+rdana, sans-serif">=C2=A0</font></p><p class=3D"MsoNormal" style=3D"margin:=
+0cm;line-height:normal;font-size:11pt;font-family:Calibri,sans-serif"><b><s=
+pan lang=3D"EN-US" style=3D"font-size:10pt;font-family:Verdana,sans-serif">=
+Joining:</span></b><span lang=3D"EN-US" style=3D"font-size:10pt;font-family=
+:Verdana,sans-serif">=C2=A0Immediate</span><span style=3D"font-size:10pt;fo=
+nt-family:Verdana,sans-serif"></span></p><p class=3D"MsoNormal" style=3D"ma=
+rgin:0cm;line-height:normal;font-size:11pt;font-family:Calibri,sans-serif">=
+<span style=3D"font-size:10pt;font-family:Verdana,sans-serif">=C2=A0</span>=
+</p><p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;font-size=
+:11pt;font-family:Calibri,sans-serif"><b><span style=3D"font-size:10pt;font=
+-family:Verdana,sans-serif">Location:=C2=A0</span></b><span style=3D"font-s=
+ize:10pt;font-family:Verdana,sans-serif">Jaipur</span></p><p class=3D"MsoNo=
+rmal" style=3D"margin:0cm;line-height:normal;font-size:11pt;font-family:Cal=
+ibri,sans-serif"><span style=3D"font-size:10pt;font-family:Verdana,sans-ser=
+if">=C2=A0</span></p><p class=3D"MsoNormal" style=3D"margin:0cm;line-height=
+:normal;font-size:11pt;font-family:Calibri,sans-serif"><b><span style=3D"fo=
+nt-size:10pt;font-family:Verdana,sans-serif">Selection Process:</span></b><=
+span style=3D"font-size:10pt;font-family:Verdana,sans-serif"></span></p><p =
+class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;font-size:11pt;f=
+ont-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-family:Ve=
+rdana,sans-serif">1. Resume shortlisting (Students are required to prepare =
+a resume as per the Job Description and skills requirement shared by the co=
+mpany in above email)</span></p><p class=3D"MsoNormal" style=3D"margin:0cm;=
+line-height:normal;font-size:11pt;font-family:Calibri,sans-serif"><span sty=
+le=3D"font-size:10pt;font-family:Verdana,sans-serif">2. Group Discussion/On=
+line Test</span></p><p class=3D"MsoNormal" style=3D"margin:0cm;line-height:=
+normal;font-size:11pt;font-family:Calibri,sans-serif"><span style=3D"font-s=
+ize:10pt;font-family:Verdana,sans-serif">3. Technical Interviews</span></p>=
+<p class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;font-size:11p=
+t;font-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-family=
+:Verdana,sans-serif">4. Personal/HR Interviews</span></p><p class=3D"MsoNor=
+mal" style=3D"margin:0cm;line-height:normal;font-size:11pt;font-family:Cali=
+bri,sans-serif"><span style=3D"font-size:10pt;font-family:Verdana,sans-seri=
+f">=C2=A0</span></p><p class=3D"MsoNormal" style=3D"margin:0cm;line-height:=
+normal;font-size:11pt;font-family:Calibri,sans-serif"><b><span style=3D"fon=
+t-size:10pt;font-family:Verdana,sans-serif">All interested students can app=
+ly=C2=A0for=C2=A0the same via below mentioned Google form</span></b></p><p =
+class=3D"MsoNormal" style=3D"margin:0cm;line-height:normal;font-size:11pt;f=
+ont-family:Calibri,sans-serif"><span style=3D"font-size:10pt;font-family:Ve=
+rdana,sans-serif">=C2=A0</span></p><p class=3D"MsoNormal" style=3D"margin:0=
+cm;line-height:normal"><font face=3D"verdana, sans-serif" size=3D"4"><b>Goo=
+gle=C2=A0form=C2=A0link:=C2=A0<span style=3D"background-color:transparent">=
+</span><span style=3D"background-color:transparent"><a href=3D"https://form=
+s.gle/75htoxHBBQRbXpCr8">https://forms.gle/75htoxHBBQRbXpCr8</a></span></b>=
+</font></p></div><div><br></div><span class=3D"gmail_signature_prefix">-- <=
+/span><br><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><p cl=
+ass=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;line-height:115%"><b><spa=
+n style=3D"font-size:12pt;line-height:115%;font-family:Georgia,serif">For a=
+ny query, you may contact your Department
+T&amp;P Coordinator</span></b><b><span style=3D"font-size:12pt;line-height:=
+115%;font-family:Georgia,serif"></span></b></p><p class=3D"MsoNormal" style=
+=3D"margin-bottom:0.0001pt;line-height:115%"><br></p><p class=3D"MsoNormal"=
+ style=3D"margin-bottom:0.0001pt;line-height:115%"><b><span style=3D"font-s=
+ize:12pt;line-height:115%;font-family:Georgia,serif">Ms. Priyanka Uchawani=
+=C2=A0</span></b><b><span style=3D"font-size:12pt;line-height:115%;font-fam=
+ily:Georgia,serif">-=C2=A08890013365</span></b></p><table border=3D"0" cell=
+padding=3D"0">
+ <tbody><tr>
+  <td width=3D"619" style=3D"width:448.3pt;padding:0cm">
+  <table border=3D"0" cellpadding=3D"0" width=3D"0" style=3D"width:461.15pt=
+"><tbody>
+   <tr>
+    <td style=3D"padding:0cm">
+    <p class=3D"MsoNormal" style=3D"line-height:115%"><b><span style=3D"fon=
+t-size:12pt;line-height:115%;font-family:Georgia,serif;color:rgb(31,31,31)"=
+>=C2=A0</span></b></p>
+    </td>
+   </tr>
+  </tbody></table>
+  </td>
+ </tr>
+</tbody></table><p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;line=
+-height:115%"><b><span style=3D"font-size:12pt;line-height:115%;font-family=
+:Georgia,serif">Best Wishes,</span></b><b><span style=3D"font-size:12pt;lin=
+e-height:115%;font-family:Georgia,serif;color:rgb(34,34,34)"></span></b></p=
+><p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;line-height:115%"><=
+b><span style=3D"font-size:12pt;line-height:115%;font-family:Georgia,serif;=
+color:black">Er. Sanjay Bhandari=C2=A0</span></b><b><span style=3D"font-siz=
+e:12pt;line-height:115%;font-family:Georgia,serif"></span></b></p><p class=
+=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;line-height:115%"><b><span s=
+tyle=3D"font-size:12pt;line-height:115%;font-family:Georgia,serif;color:bla=
+ck">Training &amp; Placement Officer</span></b><b><span style=3D"font-size:=
+12pt;line-height:115%;font-family:Georgia,serif"></span></b></p><p class=3D=
+"MsoNormal" style=3D"margin-bottom:0.0001pt;line-height:115%"><b><span styl=
+e=3D"font-size:12pt;line-height:115%;font-family:Georgia,serif;color:black"=
+>JIET Group of Institutions</span></b><b><span style=3D"font-size:12pt;line=
+-height:115%;font-family:Georgia,serif"></span></b></p><p class=3D"MsoNorma=
+l" style=3D"margin-bottom:0.0001pt;line-height:115%"><b><span style=3D"font=
+-size:12pt;line-height:115%;font-family:Georgia,serif;color:black">Tel: 029=
+12868152 / Mob:=C2=A0</span></b><b><span style=3D"font-size:12pt;line-heigh=
+t:115%;font-family:Georgia,serif">=C2=A09001895780</span></b></p><p class=
+=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;line-height:115%">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;line-height:115%=
+"><b><span style=3D"font-size:12pt;line-height:115%;font-family:Georgia,ser=
+if;color:black">Website:=C2=A0<a href=3D"http://www.jietjodhpur.ac.in/" tar=
+get=3D"_blank"><span style=3D"color:blue">www.jietjodhpur.ac.in</span></a><=
+/span></b><b><span style=3D"font-size:12pt;line-height:115%;font-family:Geo=
+rgia,serif"></span></b></p></div></div></div></div>
+
+<br>
+<p></p><p style=3D"text-align:justify"><span><font size=3D"1" color=3D"#000=
+000">This email and the=C2=A0information=C2=A0it contains are confidential =
+and may be privileged. If you have received this email in error please noti=
+fy=C2=A0us=C2=A0immediately. You should not copy it for any purpose, or dis=
+close its contents to any other person. Internet communications are not sec=
+ure and, therefore,=C2=A0JIET Group of Institutions=C2=A0does not accept le=
+gal responsibility for the contents of this message as it has been transmit=
+ted over a public network. If you suspect the message may have been interce=
+pted or amended please contact us.</font></span></p>
+--000000000000f76910065b82bbb8--
+--000000000000f76911065b82bbba
+Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; 
+	name="Eligible List_144.xlsx"
+Content-Disposition: attachment; filename="Eligible List_144.xlsx"
+Content-Transfer-Encoding: base64
+Content-ID: <f_mu2idggf0>
+X-Attachment-Id: f_mu2idggf0
+
+UEsDBBQABgAIAAAAIQBi7p1oXgEAAJAEAAATAAgCW0NvbnRlbnRfVHlwZXNdLnhtbCCiBAIooAAC
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACs
+lMtOwzAQRfdI/EPkLUrcskAINe2CxxIqUT7AxJPGqmNbnmlp/56J+xBCoRVqN7ESz9x7MvHNaLJu
+bbaCiMa7UgyLgcjAVV4bNy/Fx+wlvxcZknJaWe+gFBtAMRlfX41mmwCYcbfDUjRE4UFKrBpoFRY+
+gOOd2sdWEd/GuQyqWqg5yNvB4E5W3hE4yqnTEOPRE9RqaSl7XvPjLUkEiyJ73BZ2XqVQIVhTKWJS
+uXL6l0u+cyi4M9VgYwLeMIaQvQ7dzt8Gu743Hk00GrKpivSqWsaQayu/fFx8er8ojov0UPq6NhVo
+Xy1bnkCBIYLS2ABQa4u0Fq0ybs99xD8Vo0zL8MIg3fsl4RMcxN8bZLqej5BkThgibSzgpceeRE85
+NyqCfqfIybg4wE/tYxx8bqbRB+QERfj/FPYR6brzwEIQycAhJH2H7eDI6Tt77NDlW4Pu8ZbpfzL+
+BgAA//8DAFBLAwQUAAYACAAAACEAtVUwI/QAAABMAgAACwAIAl9yZWxzLy5yZWxzIKIEAiigAAIA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKyS
+TU/DMAyG70j8h8j31d2QEEJLd0FIuyFUfoBJ3A+1jaMkG92/JxwQVBqDA0d/vX78ytvdPI3qyCH2
+4jSsixIUOyO2d62Gl/pxdQcqJnKWRnGs4cQRdtX11faZR0p5KHa9jyqruKihS8nfI0bT8USxEM8u
+VxoJE6UchhY9mYFaxk1Z3mL4rgHVQlPtrYawtzeg6pPPm3/XlqbpDT+IOUzs0pkVyHNiZ9mufMhs
+IfX5GlVTaDlpsGKecjoieV9kbMDzRJu/E/18LU6cyFIiNBL4Ms9HxyWg9X9atDTxy515xDcJw6vI
+8MmCix+o3gEAAP//AwBQSwMEFAAGAAgAAAAhAIE+lJfzAAAAugIAABoACAF4bC9fcmVscy93b3Jr
+Ym9vay54bWwucmVscyCiBAEooAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+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
+--000000000000f76911065b82bbba--

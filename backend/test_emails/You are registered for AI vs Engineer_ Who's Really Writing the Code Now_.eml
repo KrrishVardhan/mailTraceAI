@@ -1,0 +1,156 @@
+Delivered-To: vyaskrrishvardhan@gmail.com
+Received: by 2002:a05:6a11:327:b0:6f2:92b1:2a6a with SMTP id id39csp2638773pxb;
+        Sun, 13 Sep 2026 09:53:02 -0700 (PDT)
+X-Received: by 2002:a05:6a21:2d42:b0:3d1:39e9:b26d with SMTP id adf61e73a8af0-3daed2c51ecmr13766494637.1.1789318382724;
+        Sun, 13 Sep 2026 09:53:02 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789318382; cv=none;
+        d=google.com; s=arc-20260327;
+        b=LLtl8z7Ph1Xl0S0inTWu8CnN2Kw3NH6KGpd8Ap7xW9I6qbb9WICFbmivjwY+orHF9H
+         k8voWHHLXGBn2faHVu9I4YovS2yE8+Ck/fVvPgoWaJiF0OrN0ngJu4fM7Nxl9AxJHOMG
+         //VoJQHJ2+EOtyJmD8++mVf0ZLh+zh/72mv3aTcqk9MEIQ4Ye2dWDHzZdG748OBhEUei
+         3KC3Aoiiq6EAlXuQtiVYAANsYM25bR9qHXLGHFbMXdJrtfNxMO5iG/zzfGXRE+tn1Zd4
+         TItewWY98ydyuM5g2CBKWny+WXzljsvMLqGqYSXMaoj+Es4v8RjG3Y0sZiKFCn5TMM5v
+         gU7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=feedback-id:date:message-id:list-unsubscribe-post:list-unsubscribe
+         :mime-version:subject:to:from:dkim-signature:dkim-signature;
+        bh=FCRXppOPiRWVf5c5vbfrECl9CsFj5Gt2Khgzr74Yr8g=;
+        fh=/CiNya7eU4mXLB+afIcoCgwhe1zvG3+cpnrr2zGTszg=;
+        b=LAEIWqWpvN5zj7ByWJANzwts3pVlQiXYRQQ27IZdErvlbM/765Adm0yUFl6201ozVO
+         O112AGVCzR6solKLhEanMsyIVnQzX1J0RNx64C5azAB/s2AC5HSOXNUvAp2RhCE3mTvD
+         B9st8yItnXhCDv1ihKgFxatXIWEyfc0sXFJICVuzkbda8KmrLuAdzTUkZRd+51bjadAk
+         CXSZAeDEsUaWv1v1ZKV/cwZkDmG3KAuoE+wioXfviNZX12TW16gC+GyHPKhok5hz3ttc
+         y3ZeAeT2NQgtNH2wTQThQcdsdC+NZNPaVN23BPyjdjJDQXAM94NWrhST67uTnRNGUdVQ
+         Rx2w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@masterji.co header.s=tohjtxzoairyxbzq3oe27jhz7lmsoj5y header.b=AlVt253O;
+       dkim=pass header.i=@amazonses.com header.s=rlntogby6xsxlfnvyxwnvvhttakdsqto header.b=SOWVjpai;
+       spf=pass (google.com: domain of 010901a09bafc189-fb01d5d6-788a-4d80-937c-85a888aad08d-000000@mail.masterji.co designates 76.223.180.23 as permitted sender) smtp.mailfrom=010901a09bafc189-fb01d5d6-788a-4d80-937c-85a888aad08d-000000@mail.masterji.co;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=masterji.co
+Return-Path: <010901a09bafc189-fb01d5d6-788a-4d80-937c-85a888aad08d-000000@mail.masterji.co>
+Received: from c180-23.smtp-out.ap-south-1.amazonses.com (c180-23.smtp-out.ap-south-1.amazonses.com. [76.223.180.23])
+        by mx.google.com with ESMTPS id 41be03b00d2f7-cc4c65dc6a5si14373770a12.72.2026.09.13.09.53.02
+        for <vyaskrrishvardhan@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 13 Sep 2026 09:53:02 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 010901a09bafc189-fb01d5d6-788a-4d80-937c-85a888aad08d-000000@mail.masterji.co designates 76.223.180.23 as permitted sender) client-ip=76.223.180.23;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@masterji.co header.s=tohjtxzoairyxbzq3oe27jhz7lmsoj5y header.b=AlVt253O;
+       dkim=pass header.i=@amazonses.com header.s=rlntogby6xsxlfnvyxwnvvhttakdsqto header.b=SOWVjpai;
+       spf=pass (google.com: domain of 010901a09bafc189-fb01d5d6-788a-4d80-937c-85a888aad08d-000000@mail.masterji.co designates 76.223.180.23 as permitted sender) smtp.mailfrom=010901a09bafc189-fb01d5d6-788a-4d80-937c-85a888aad08d-000000@mail.masterji.co;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=masterji.co
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=tohjtxzoairyxbzq3oe27jhz7lmsoj5y; d=masterji.co; t=1789318382;
+	h=From:To:Subject:MIME-Version:List-Unsubscribe:List-Unsubscribe-Post:Content-Type:Message-ID:Date;
+	bh=FCRXppOPiRWVf5c5vbfrECl9CsFj5Gt2Khgzr74Yr8g=;
+	b=AlVt253OFtXfXat71cpqduGliPGa34ReBAy/DwhvCtH2Aqphc70r2F0a6kBC5gG7
+	kHISdMaoApkSKztFYRvZABW9o1XQAQHD2QGEkL/DMumfacPiV3QUVwvixPa28a6HhdV
+	bnFCUWxUzJcWhdYxRJP42R9ZD+3SMeri3hYMYPzfLVoJUSCLE1o0uwPyT+BP15oEGPO
+	vUcZP2sMnpjFalaM+doTiZaRQlNbaAuI8d/NFeqLnkowH0Ao3WMbFZX7E4cJddM3+vf
+	AjVIRw21UTBgnnwu2tzsDvGzlQx6XYXghoYjP4CM8ywespPJNYUbS+I8PecHAF1zHWY
+	mcnFsjmHyQ==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=rlntogby6xsxlfnvyxwnvvhttakdsqto; d=amazonses.com; t=1789318382;
+	h=From:To:Subject:MIME-Version:List-Unsubscribe:List-Unsubscribe-Post:Content-Type:Message-ID:Date:Feedback-ID;
+	bh=FCRXppOPiRWVf5c5vbfrECl9CsFj5Gt2Khgzr74Yr8g=;
+	b=SOWVjpaiAbyL714rTkRZdaJXfQcaR+kG88wTgTPagk+xpeILT5gx1Cqu+NFcsTGR
+	27FqkcjTfi5T178MyfOVZODo3aRfXanztErvvfv+NbuNa4UBjjvIX4lPGMVBaojV06O
+	e3E4Z9fXUxH4ntdsVpqbj5WVoKytbCUpzDPzoCHU=
+From: Masterji <events@masterji.co>
+To: vyaskrrishvardhan@gmail.com
+Subject: You are registered for AI vs Engineer: Who's Really Writing the Code Now?
+MIME-Version: 1.0
+List-Unsubscribe: <https://rbbwalrlbghcsbotidbd.supabase.co/functions/v1/email-preferences?token=NmIxOWIyODUtODYwZS00MGM2LTk3ZWMtOTM1ZDk4MWU1NDZj.R95BrHizNAn7-Px1A2n0L-GBN0C5tXQYUP82M6HD970>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Content-Type: multipart/alternative; boundary="masterji_cc5ecc6e9678423fbd44e17890751624"
+Message-ID: <010901a09bafc189-fb01d5d6-788a-4d80-937c-85a888aad08d-000000@ap-south-1.amazonses.com>
+Date: Sun, 13 Sep 2026 16:53:01 +0000
+Feedback-ID: ::1.ap-south-1.77cNVbCn5lNkIozZASEUWC3xI557IhbbB8zIfehVIOk=:AmazonSES
+X-SES-Outgoing: 2026.09.13-76.223.180.23
+
+--masterji_cc5ecc6e9678423fbd44e17890751624
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+
+SGkgS3JyaXNodmFyZGhhbiB2eWFzLAoKWW91ciBzcG90IGlzIGNvbmZpcm1lZCBmb3IgQUkgdnMg
+RW5naW5lZXI6IFdobydzIFJlYWxseSBXcml0aW5nIHRoZSBDb2RlIE5vdz8KCldlZG5lc2RheSAx
+NiBTZXB0ZW1iZXIsIDIwMjYKODozMOKAr3BtIElTVCDCtyBBc2lhL0tvbGthdGEKT25saW5lCgpF
+dmVyeXRoaW5nIHlvdSBuZWVkIGlzIHJlYWR5LiBVc2UgdGhlIGJ1dHRvbiBiZWxvdyB3aGVuIGl0
+IGlzIHRpbWUgdG8gam9pbi4KCkpvaW4gdGhlIGV2ZW50OiBodHRwczovL3VzMDZ3ZWIuem9vbS51
+cy93ZWJpbmFyL3JlZ2lzdGVyL1dOX1VQQWdxVDlIUWlXelBGbkNtODFULUEKClZpZXcgZXZlbnQg
+b24gTWFzdGVySmk6IGh0dHBzOi8vbWFzdGVyamkuY28vZXZlbnRzL2FpLXZzLWVuZ2luZWVyCgpV
+bnN1YnNjcmliZSBvciBtYW5hZ2UgZW1haWwgcHJlZmVyZW5jZXM6IGh0dHBzOi8vbWFzdGVyamku
+Y28vZW1haWwtcHJlZmVyZW5jZXMjdG9rZW49Tm1JeE9XSXlPRFV0T0RZd1pTMDBNR00yTFRrM1pX
+TXRPVE0xWkRrNE1XVTFORFpqLlI5NUJySGl6TkFuNy1QeDFBMm4wTC1HQk4wQzV0WFFZVVA4Mk02
+SEQ5NzAKClNlbnQgYnkgTWFzdGVyamk=
+--masterji_cc5ecc6e9678423fbd44e17890751624
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: base64
+
+PCFkb2N0eXBlIGh0bWw+PGh0bWw+PGJvZHkgc3R5bGU9Im1hcmdpbjowO2JhY2tncm91bmQ6I2Y0
+ZjRmNTtmb250LWZhbWlseTpIZWx2ZXRpY2EsQXJpYWwsc2Fucy1zZXJpZjtjb2xvcjojMTgxODFi
+Ij48ZGl2IHN0eWxlPSJkaXNwbGF5Om5vbmU7bWF4LWhlaWdodDowO292ZXJmbG93OmhpZGRlbjtv
+cGFjaXR5OjA7Y29sb3I6dHJhbnNwYXJlbnQiPkhpIEtycmlzaHZhcmRoYW4gdnlhcywgWW91ciBz
+cG90IGlzIGNvbmZpcm1lZCBmb3IgQUkgdnMgRW5naW5lZXI6IFdobyYjMDM5O3MgUmVhbGx5IFdy
+aXRpbmcgdGhlIENvZGUgTm93PyBXZWRuZXNkYXkgMTYgU2VwdGVtYmVyLCAyMDI2IDg6MzAgcG0g
+SVM8L2Rpdj48dGFibGUgcm9sZT0icHJlc2VudGF0aW9uIiB3aWR0aD0iMTAwJSIgY2VsbHNwYWNp
+bmc9IjAiIGNlbGxwYWRkaW5nPSIwIiBiZ2NvbG9yPSIjZjRmNGY1Ij48dHI+PHRkIGFsaWduPSJj
+ZW50ZXIiIHN0eWxlPSJwYWRkaW5nOjQwcHggMTZweCI+PHRhYmxlIHJvbGU9InByZXNlbnRhdGlv
+biIgd2lkdGg9IjEwMCUiIGNlbGxzcGFjaW5nPSIwIiBjZWxscGFkZGluZz0iMCIgc3R5bGU9Im1h
+eC13aWR0aDo2NDBweDtiYWNrZ3JvdW5kOiNmZmZmZmY7Ym9yZGVyOjFweCBzb2xpZCAjZTRlNGU3
+O2JvcmRlci1yYWRpdXM6MjBweDtvdmVyZmxvdzpoaWRkZW4iPjx0cj48dGQgYmdjb2xvcj0iIzE4
+MTgxYiIgc3R5bGU9InBhZGRpbmc6MjRweCAzNnB4Ij48dGFibGUgcm9sZT0icHJlc2VudGF0aW9u
+IiB3aWR0aD0iMTAwJSIgY2VsbHNwYWNpbmc9IjAiIGNlbGxwYWRkaW5nPSIwIj48dHI+PHRkIGFs
+aWduPSJsZWZ0IiB2YWxpZ249Im1pZGRsZSI+PGltZyBzcmM9Imh0dHBzOi8vbWFzdGVyamkuY28v
+Y2hhaWNvZGUtZW1haWwtbG9nby5wbmciIHdpZHRoPSIxNzgiIGFsdD0iTWFzdGVyamkiIHN0eWxl
+PSJkaXNwbGF5OmJsb2NrO3dpZHRoOjE3OHB4O21heC13aWR0aDoxMDAlO2hlaWdodDphdXRvO2Jv
+cmRlcjowIiAvPjwvdGQ+PHRkIGFsaWduPSJyaWdodCIgdmFsaWduPSJtaWRkbGUiPjxzcGFuIHN0
+eWxlPSJkaXNwbGF5OmlubGluZS1ibG9jaztwYWRkaW5nOjdweCAxMXB4O2JvcmRlcjoxcHggc29s
+aWQgIzNmM2Y0Njtib3JkZXItcmFkaXVzOjk5OXB4O2NvbG9yOiNkNGQ0ZDg7Zm9udC1zaXplOjEw
+cHg7Zm9udC13ZWlnaHQ6ODAwO2xldHRlci1zcGFjaW5nOjEuNXB4Ij5FVkVOVFM8L3NwYW4+PC90
+ZD48L3RyPjwvdGFibGU+PC90ZD48L3RyPjx0cj48dGQgc3R5bGU9InBhZGRpbmc6NDJweCAzNnB4
+IDM2cHgiPjxkaXYgc3R5bGU9Im1hcmdpbi1ib3R0b206MTJweDtjb2xvcjojZjk3MzE2O2ZvbnQt
+c2l6ZToxM3B4O2ZvbnQtd2VpZ2h0OjgwMDtsZXR0ZXItc3BhY2luZzowLjFweCI+WW914oCZcmUg
+cmVnaXN0ZXJlZDwvZGl2PjxoMSBzdHlsZT0ibWFyZ2luOjAgMCAyOHB4O2ZvbnQtZmFtaWx5Okdl
+b3JnaWEsVGltZXMsc2VyaWY7Zm9udC1zaXplOjMycHg7bGluZS1oZWlnaHQ6MS4yO2ZvbnQtd2Vp
+Z2h0OjcwMDtsZXR0ZXItc3BhY2luZzotMC41cHg7Y29sb3I6IzE4MTgxYiI+QUkgdnMgRW5naW5l
+ZXI6IFdobyYjMDM5O3MgUmVhbGx5IFdyaXRpbmcgdGhlIENvZGUgTm93PzwvaDE+PGRpdj48cCBz
+dHlsZT0ibWFyZ2luOjAgMCAyMHB4O2ZvbnQtc2l6ZToxNnB4O2xpbmUtaGVpZ2h0OjEuNzU7Zm9u
+dC13ZWlnaHQ6NzAwO2NvbG9yOiMxODE4MWIiPkhpIEtycmlzaHZhcmRoYW4gdnlhcyw8L3A+PHAg
+c3R5bGU9Im1hcmdpbjowIDAgMjBweDtmb250LXNpemU6MTZweDtsaW5lLWhlaWdodDoxLjc1O2Nv
+bG9yOiMzZjNmNDYiPllvdXIgc3BvdCBpcyBjb25maXJtZWQgZm9yIEFJIHZzIEVuZ2luZWVyOiBX
+aG8mIzAzOTtzIFJlYWxseSBXcml0aW5nIHRoZSBDb2RlIE5vdz88L3A+PHAgc3R5bGU9Im1hcmdp
+bjowIDAgMjBweDtmb250LXNpemU6MTZweDtsaW5lLWhlaWdodDoxLjc1O2NvbG9yOiMzZjNmNDYi
+PldlZG5lc2RheSAxNiBTZXB0ZW1iZXIsIDIwMjY8YnIgLz44OjMw4oCvcG0gSVNUIMK3IEFzaWEv
+S29sa2F0YTxiciAvPk9ubGluZTwvcD48cCBzdHlsZT0ibWFyZ2luOjAgMCAyMHB4O2ZvbnQtc2l6
+ZToxNnB4O2xpbmUtaGVpZ2h0OjEuNzU7Y29sb3I6IzNmM2Y0NiI+RXZlcnl0aGluZyB5b3UgbmVl
+ZCBpcyByZWFkeS4gVXNlIHRoZSBidXR0b24gYmVsb3cgd2hlbiBpdCBpcyB0aW1lIHRvIGpvaW4u
+PC9wPjwvZGl2Pjx0YWJsZSByb2xlPSJwcmVzZW50YXRpb24iIGNlbGxzcGFjaW5nPSIwIiBjZWxs
+cGFkZGluZz0iMCIgc3R5bGU9Im1hcmdpbjoxMHB4IDAgMnB4Ij48dHI+PHRkIGJnY29sb3I9IiNm
+OTczMTYiIHN0eWxlPSJib3JkZXItcmFkaXVzOjEycHgiPjxhIGhyZWY9Imh0dHBzOi8vdXMwNndl
+Yi56b29tLnVzL3dlYmluYXIvcmVnaXN0ZXIvV05fVVBBZ3FUOUhRaVd6UEZuQ204MVQtQSIgdGFy
+Z2V0PSJfYmxhbmsiIHJlbD0ibm9vcGVuZXIgbm9yZWZlcnJlciIgc3R5bGU9ImRpc3BsYXk6aW5s
+aW5lLWJsb2NrO3BhZGRpbmc6MTRweCAyNHB4O2NvbG9yOiNmZmZmZmY7Zm9udC1zaXplOjE1cHg7
+Zm9udC13ZWlnaHQ6ODAwO2xpbmUtaGVpZ2h0OjE7dGV4dC1kZWNvcmF0aW9uOm5vbmU7Ym9yZGVy
+LXJhZGl1czoxMnB4Ij5Kb2luIHRoZSBldmVudCAmbmJzcDvihpI8L2E+PC90ZD48L3RyPjwvdGFi
+bGU+PGRpdiBzdHlsZT0ibWFyZ2luLXRvcDoxNnB4Ij48YSBocmVmPSJodHRwczovL21hc3Rlcmpp
+LmNvL2V2ZW50cy9haS12cy1lbmdpbmVlciIgdGFyZ2V0PSJfYmxhbmsiIHJlbD0ibm9vcGVuZXIg
+bm9yZWZlcnJlciIgc3R5bGU9ImNvbG9yOiNlYTU4MGM7Zm9udC1zaXplOjEzcHg7Zm9udC13ZWln
+aHQ6NzAwO3RleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7dGV4dC1kZWNvcmF0aW9uLXRoaWNrbmVz
+czoxcHg7dGV4dC11bmRlcmxpbmUtb2Zmc2V0OjNweCI+VmlldyBldmVudCBvbiBNYXN0ZXJKaSAm
+bmJzcDvihpI8L2E+PC9kaXY+PC90ZD48L3RyPjx0cj48dGQgYmdjb2xvcj0iI2ZhZmFmYSIgc3R5
+bGU9InBhZGRpbmc6MjRweCAzNnB4O2JvcmRlci10b3A6MXB4IHNvbGlkICNlNGU0ZTciPjxkaXYg
+c3R5bGU9Im1hcmdpbi1ib3R0b206OHB4O2NvbG9yOiMzZjNmNDY7Zm9udC1zaXplOjEycHg7Zm9u
+dC13ZWlnaHQ6ODAwIj5TZW50IGJ5IE1hc3RlcmppPC9kaXY+PGEgaHJlZj0iaHR0cHM6Ly9tYXN0
+ZXJqaS5jby9lbWFpbC1wcmVmZXJlbmNlcyN0b2tlbj1ObUl4T1dJeU9EVXRPRFl3WlMwME1HTTJM
+VGszWldNdE9UTTFaRGs0TVdVMU5EWmouUjk1QnJIaXpOQW43LVB4MUEybjBMLUdCTjBDNXRYUVlV
+UDgyTTZIRDk3MCIgdGFyZ2V0PSJfYmxhbmsiIHJlbD0ibm9vcGVuZXIgbm9yZWZlcnJlciIgc3R5
+bGU9ImNvbG9yOiNlYTU4MGM7Zm9udC1zaXplOjExcHg7Zm9udC13ZWlnaHQ6NzAwO3RleHQtZGVj
+b3JhdGlvbjp1bmRlcmxpbmU7dGV4dC11bmRlcmxpbmUtb2Zmc2V0OjNweCI+VW5zdWJzY3JpYmUg
+b3IgbWFuYWdlIGVtYWlsIHByZWZlcmVuY2VzPC9hPjwvdGQ+PC90cj48L3RhYmxlPjxkaXYgc3R5
+bGU9InBhZGRpbmc6MThweCAxMnB4IDA7Y29sb3I6I2ExYTFhYTtmb250LXNpemU6MTBweDtsaW5l
+LWhlaWdodDoxLjUiPllvdSByZWNlaXZlZCB0aGlzIGJlY2F1c2UgeW91IHJlZ2lzdGVyZWQgZm9y
+IGEgQ2hhaUNvZGUgZXZlbnQuPC9kaXY+PC90ZD48L3RyPjwvdGFibGU+PC9ib2R5PjwvaHRtbD4=
+
+--masterji_cc5ecc6e9678423fbd44e17890751624--
