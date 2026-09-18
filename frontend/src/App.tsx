@@ -8,6 +8,7 @@ import { useTheme } from "@/components/theme-provider"
 import BlurText from "@/components/BlurText"
 import ShinyText from "@/components/ShinyText"
 import AnimatedContent from "@/components/AnimatedContent"
+import { Gauge } from "@/components/charts/gauge"
 import {
   Upload,
   Shield,
@@ -510,6 +511,32 @@ export default function App() {
               {result.phishing_analysis && result.phishing_analysis.verdict !== "UNAVAILABLE" && (
                 <Panel title="ML Confidence Breakdown" icon={<BarChart2 className="h-3.5 w-3.5" />}>
                   <div className="space-y-3">
+                    {result.phishing_analysis.phishing_probability != null && (
+                      <div className="mx-auto w-full max-w-sm">
+                        <Gauge
+                          value={result.phishing_analysis.phishing_probability * 100}
+                          centerValue={result.phishing_analysis.phishing_probability * 100}
+                          defaultLabel={result.phishing_analysis.verdict}
+                          suffix="%"
+                          activeGradient={
+                            result.phishing_analysis.phishing_probability > 0.7
+                              ? ["#ef4444", "#ef4444"]
+                              : result.phishing_analysis.phishing_probability > 0.5
+                                ? ["#eab308", "#eab308"]
+                                : ["#22c55e", "#22c55e"]
+                          }
+                          inactiveGradient={
+                            result.phishing_analysis.phishing_probability > 0.7
+                              ? ["#ef4444", "#ef4444"]
+                              : result.phishing_analysis.phishing_probability > 0.5
+                                ? ["#eab308", "#eab308"]
+                                : ["#22c55e", "#22c55e"]
+                          }
+                          inactiveFillOpacity={0.4}
+                          useGradient
+                        />
+                      </div>
+                    )}
                     <ProbBar
                       label="Phishing probability"
                       value={result.phishing_analysis.phishing_probability}
