@@ -521,14 +521,14 @@ export default function App() {
                           activeGradient={
                             result.phishing_analysis.phishing_probability > 0.7
                               ? ["#ef4444", "#ef4444"]
-                              : result.phishing_analysis.phishing_probability > 0.5
+                              : result.phishing_analysis.phishing_probability > 0.3
                                 ? ["#eab308", "#eab308"]
                                 : ["#22c55e", "#22c55e"]
                           }
                           inactiveGradient={
                             result.phishing_analysis.phishing_probability > 0.7
                               ? ["#ef4444", "#ef4444"]
-                              : result.phishing_analysis.phishing_probability > 0.5
+                              : result.phishing_analysis.phishing_probability > 0.3
                                 ? ["#eab308", "#eab308"]
                                 : ["#22c55e", "#22c55e"]
                           }
