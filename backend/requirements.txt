@@ -1,18 +1,32 @@
-annotated-doc==0.0.5
-annotated-types==0.8.0
-anyio==4.15.1
+# Web framework
+fastapi==0.141.1
+uvicorn==0.52.4
+starlette==1.6.0
+python-multipart==0.0.32
+
+# HTTP / networking
+requests==2.34.2
 certifi==2026.7.22
 charset-normalizer==3.5.1
-click==8.5.0
-fastapi==0.141.1
-h11==0.16.0
 idna==3.19
+urllib3==2.7.0
+
+# Pydantic / typing
 pydantic==2.13.5
 pydantic_core==2.46.5
-python-multipart==0.0.32
-requests==2.34.2
-starlette==1.6.0
+annotated-doc==0.0.5
+annotated-types==0.8.0
 typing-inspection==0.4.4
 typing_extensions==4.16.0
-urllib3==2.7.0
-uvicorn==0.52.4
+
+# Async
+anyio==4.15.1
+h11==0.16.0
+click==8.5.0
+
+# ML — phishing classifier
+joblib==1.6.0
+scikit-learn==1.9.1
+numpy==2.5.3
+pandas==3.0.5
+scipy==1.18.1
