@@ -32,6 +32,19 @@ export interface OriginAssessment {
   confidence: "high" | "medium" | "low" | "none";
 }
 
+export interface PhishingAnalysis {
+  verdict: "PHISHING" | "SUSPICIOUS" | "LEGITIMATE" | "UNAVAILABLE";
+  phishing_probability: number | null;
+  legitimate_probability: number | null;
+  confidence: number | null;
+  risk_level: "high" | "medium" | "low" | "unknown";
+  threshold_used: {
+    phishing_above: number;
+    legitimate_below: number;
+  } | null;
+  error: string | null;
+}
+
 export interface AnalysisResult {
   headers: {
     from: string | null;
@@ -57,6 +70,7 @@ export interface AnalysisResult {
   geolocation: GeolocationResult[];
   geolocation_error?: string;
   origin_assessment?: OriginAssessment;
+  phishing_analysis: PhishingAnalysis;
 }
 
 export async function analyzeEmail(file: File): Promise<AnalysisResult> {
