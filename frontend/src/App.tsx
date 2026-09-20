@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { analyzeEmail, type AnalysisResult } from "@/lib/api"
 import { IpLocationMap } from "@/components/IpLocationMap"
+import { RelayChainTimeline } from "@/components/RelayChainTimeline"
 import { useTheme } from "@/components/theme-provider"
 import BlurText from "@/components/BlurText"
 import ShinyText from "@/components/ShinyText"
@@ -21,7 +22,6 @@ import {
   Sun,
   Loader2,
   Mail,
-  CornerDownRight,
   Compass,
   Clock,
   Info,
@@ -664,35 +664,10 @@ export default function App() {
                 className="flex-1 overflow-hidden"
                 scrollable
               >
-                <div className="space-y-2.5">
-                  {result.relay_chain.map((hop, idx) => (
-                    <div key={hop.hop} className="relative pl-4">
-                      {idx < result.relay_chain.length - 1 && (
-                        <span className="absolute top-5 left-1.5 h-[calc(100%+0.5rem)] w-px bg-border" />
-                      )}
-                      <span className={cn(
-                        "absolute top-1 left-0 h-3 w-3 rounded-full border-2 bg-background",
-                        idx === 0 ? "border-foreground" : "border-muted-foreground/40"
-                      )} />
-                      <div className="space-y-0.5">
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-xs font-semibold">Hop {hop.hop}</span>
-                          {hop.ip_candidates.map((ip) => (
-                            <span key={ip} className="font-mono text-[10px] text-muted-foreground">{ip}</span>
-                          ))}
-                          {idx === 0 && (
-                            <span className="ml-auto">
-                              <CornerDownRight className="h-3 w-3 text-muted-foreground/50" />
-                            </span>
-                          )}
-                        </div>
-                        <p className="line-clamp-2 text-[10px] leading-tight break-all text-muted-foreground">
-                          {hop.raw}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <RelayChainTimeline
+                  relayChain={result.relay_chain}
+                  geoResults={result.geolocation}
+                />
               </Panel>
             </AnimatedContent>
 
