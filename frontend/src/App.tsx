@@ -69,16 +69,6 @@ function riskStyle(risk: string) {
   }
 }
 
-function confidenceStyle(confidence: string) {
-  if (confidence === "high")
-    return "text-green-600 dark:text-green-400 bg-green-500/10 border-green-500/25"
-  if (confidence === "medium")
-    return "text-yellow-600 dark:text-yellow-400 bg-yellow-500/10 border-yellow-500/25"
-  if (confidence === "low")
-    return "text-orange-600 dark:text-orange-400 bg-orange-500/10 border-orange-500/25"
-  return "text-muted-foreground bg-muted border-border"
-}
-
 // Compact titled panel
 function Panel({
   title,
@@ -433,28 +423,63 @@ export default function App() {
                 </Panel>
               </AnimatedContent>
 
-              {/* Origin Assessment */}
-              {result.origin_assessment && (
+              {/* Origin Intelligence */}
+              {(result.geolocation.some((g) => g.status === "success") || result.sender_timezone) && (
                 <AnimatedContent distance={20} direction="horizontal" reverse duration={0.4} delay={0.2} threshold={0}>
-                  <Panel title="Origin Assessment" icon={<Compass className="h-3.5 w-3.5" />} className="flex-none">
+                  <Panel title="Origin Intelligence" icon={<Compass className="h-3.5 w-3.5" />} className="flex-none">
                     <div className="space-y-2">
-                      <span className={cn(
-                        "inline-flex items-center gap-1.5 rounded-none border px-2.5 py-0.5 text-xs font-semibold tracking-wide uppercase",
-                        confidenceStyle(result.origin_assessment.confidence)
-                      )}>
-                        {result.origin_assessment.confidence} confidence
-                      </span>
-                      <p className="text-xs leading-relaxed text-muted-foreground">
-                        {result.origin_assessment.verdict}
-                      </p>
+                      {result.geolocation
+                        .filter((g) => g.status === "success")
+                        .slice(0, 1)
+                        .map((geo) => (
+                          <div key={geo.query} className="space-y-1.5">
+                            <div>
+                              <p className="mb-0.5 text-[10px] tracking-wider text-muted-foreground uppercase">IP Address</p>
+                              <p className="font-mono text-xs text-foreground">{geo.query}</p>
+                            </div>
+                            {(geo.city || geo.regionName || geo.country) && (
+                              <div>
+                                <p className="mb-0.5 text-[10px] tracking-wider text-muted-foreground uppercase">Geolocation</p>
+                                <p className="text-xs text-foreground">
+                                  {[geo.city, geo.regionName, geo.country].filter(Boolean).join(", ")}
+                                </p>
+                              </div>
+                            )}
+                            {(geo.org || geo.isp || geo.as) && (
+                              <div>
+                                <p className="mb-0.5 text-[10px] tracking-wider text-muted-foreground uppercase">Network / Provider</p>
+                                <p className="text-xs text-foreground break-words">{geo.org || geo.isp}</p>
+                                {geo.as && (
+                                  <p className="font-mono text-[10px] text-muted-foreground">{geo.as}</p>
+                                )}
+                              </div>
+                            )}
+                            <div>
+                              <p className="mb-0.5 text-[10px] tracking-wider text-muted-foreground uppercase">Provider Infrastructure</p>
+                              <p className="text-xs text-foreground">
+                                {geo.masking?.likely_masked
+                                  ? "Yes — IP belongs to provider relay infrastructure"
+                                  : geo.hosting
+                                    ? "Datacenter / hosting IP"
+                                    : "Not identified as provider infrastructure"}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
                       {result.sender_timezone && (
-                        <div className="flex items-center gap-1.5 border-t pt-2">
-                          <Clock className="h-3 w-3 shrink-0 text-muted-foreground" />
-                          <span className="text-xs text-muted-foreground">
-                            Device timezone: UTC{result.sender_timezone.utc_offset}
-                            {result.sender_timezone.plausible_regions.length > 0 &&
-                              ` (${result.sender_timezone.plausible_regions.join(", ")})`}
-                          </span>
+                        <div className={cn(
+                          "flex items-start gap-1.5",
+                          result.geolocation.some((g) => g.status === "success") && "border-t pt-2"
+                        )}>
+                          <Clock className="mt-0.5 h-3 w-3 shrink-0 text-muted-foreground" />
+                          <div>
+                            <p className="mb-0.5 text-[10px] tracking-wider text-muted-foreground uppercase">Observed Timezone</p>
+                            <p className="text-xs text-foreground">
+                              UTC{result.sender_timezone.utc_offset}
+                              {result.sender_timezone.plausible_regions.length > 0 &&
+                                ` · ${result.sender_timezone.plausible_regions.join(", ")}`}
+                            </p>
+                          </div>
                         </div>
                       )}
                     </div>
