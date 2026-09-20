@@ -30,10 +30,8 @@ cd backend
 python -m venv venv
 source venv/bin/activate      # macOS/Linux
 # venv\Scripts\activate       # Windows
-pip install fastapi uvicorn python-multipart requests
+pip install -r requirements.txt
 ```
-
-> If you have a `requirements.txt`: `pip install -r requirements.txt`
 
 ### 4. Frontend
 
