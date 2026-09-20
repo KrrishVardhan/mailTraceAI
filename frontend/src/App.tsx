@@ -566,7 +566,7 @@ export default function App() {
                 </Panel>
               )}
 
-              {/* ── Model info ── */}
+              {/* ── Model info ── 
               <Panel title="Model" icon={<BrainCircuit className="h-3.5 w-3.5" />}>
                 <div className="space-y-2 text-xs text-muted-foreground">
                   <p>
@@ -586,7 +586,7 @@ export default function App() {
                     manual forensic review — treat the SUSPICIOUS band as a prompt for deeper analysis.
                   </p>
                 </div>
-              </Panel>
+              </Panel>*/}
 
               {/* ── Geolocation metadata (non-map) ── */}
               {result.geolocation.some((g) => g.status === "success") && (
