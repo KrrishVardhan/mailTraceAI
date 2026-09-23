@@ -759,7 +759,13 @@ export default function App() {
 
           {loading ? (
             <div className="flex flex-1 items-center justify-center">
-              <LatticeLoader />
+              <LatticeLoader
+                label="Thinking..."
+                glow
+                showTimer={false}
+                color="currentColor"
+                className="text-muted-foreground"
+              />
             </div>
           ) : !result ? (
             <div className="flex flex-1 items-center justify-center text-center">
