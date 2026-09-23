@@ -7,7 +7,7 @@ uvicorn==0.52.4
 starlette==1.6.0
 python-multipart==0.0.32
 
-# HTTP / networking
+# HTTP / networking (including Groq's OpenAI-compatible REST API)
 requests==2.34.2
 certifi==2026.7.22
 charset-normalizer==3.5.1
