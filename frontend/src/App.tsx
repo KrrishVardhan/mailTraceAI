@@ -9,6 +9,7 @@ import { useTheme } from "@/components/theme-provider"
 import BlurText from "@/components/BlurText"
 import ShinyText from "@/components/ShinyText"
 import AnimatedContent from "@/components/AnimatedContent"
+import LatticeLoader from "@/components/LatticeLoader"
 import { Gauge } from "@/components/charts/gauge"
 import {
   Upload,
@@ -126,7 +127,6 @@ function AgreementBadge({ llmAnalysis }: { llmAnalysis: LlmAnalysis }) {
   if (llmAnalysis.ml_agreement === "unavailable") return null
 
   const isAgree = llmAnalysis.ml_agreement === "agree"
-  const isDisagree = llmAnalysis.ml_agreement === "disagree" || llmAnalysis.ml_agreement === "partial"
 
   return (
     <div className="flex flex-col gap-1">
@@ -757,7 +757,11 @@ export default function App() {
             </Alert>
           )}
 
-          {!result ? (
+          {loading ? (
+            <div className="flex flex-1 items-center justify-center">
+              <LatticeLoader />
+            </div>
+          ) : !result ? (
             <div className="flex flex-1 items-center justify-center text-center">
               <AnimatedContent distance={24} direction="vertical" duration={0.5} threshold={0}>
                 <div className="space-y-3">
@@ -789,10 +793,12 @@ export default function App() {
               {/* ── ML Classifier (supporting signal) ── */}
               {result.phishing_analysis && result.phishing_analysis.verdict !== "UNAVAILABLE" && (
                 <Panel title="ML Classifier (supporting signal)" icon={<BarChart2 className="h-3.5 w-3.5" />}>
-                  <div className="space-y-3">
+                  <div className="grid gap-4 md:grid-cols-[220px_minmax(0,1fr)] md:items-center">
                     {result.phishing_analysis.phishing_probability != null && (
-                      <div className="mx-auto w-full max-w-sm">
+                      <div className="mx-auto w-full max-w-[220px]">
                         <Gauge
+                          width={220}
+                          height={168}
                           value={result.phishing_analysis.phishing_probability * 100}
                           centerValue={result.phishing_analysis.phishing_probability * 100}
                           defaultLabel={result.phishing_analysis.verdict}
@@ -816,34 +822,36 @@ export default function App() {
                         />
                       </div>
                     )}
-                    <ProbBar
-                      label="Phishing probability"
-                      value={result.phishing_analysis.phishing_probability}
-                      colorClass="bg-destructive"
-                    />
-                    <ProbBar
-                      label="Legitimate probability"
-                      value={result.phishing_analysis.legitimate_probability}
-                      colorClass="bg-green-500"
-                    />
-                    {result.phishing_analysis.threshold_used && (
-                      <div className="flex flex-wrap gap-x-4 gap-y-1 border-t pt-2">
-                        <p className="text-[10px] text-muted-foreground">
-                          <span className="font-medium">Phishing threshold:</span>{" "}
-                          ≥ {(result.phishing_analysis.threshold_used.phishing_above * 100).toFixed(0)}%
-                        </p>
-                        <p className="text-[10px] text-muted-foreground">
-                          <span className="font-medium">Legitimate threshold:</span>{" "}
-                          ≤ {(result.phishing_analysis.threshold_used.legitimate_below * 100).toFixed(0)}%
-                        </p>
-                        <p className="text-[10px] text-muted-foreground">
-                          Between thresholds → <span className="font-medium text-yellow-600 dark:text-yellow-400">SUSPICIOUS</span>
-                        </p>
-                      </div>
-                    )}
+                    <div className="min-w-0 space-y-3">
+                      <ProbBar
+                        label="Phishing probability"
+                        value={result.phishing_analysis.phishing_probability}
+                        colorClass="bg-destructive"
+                      />
+                      <ProbBar
+                        label="Legitimate probability"
+                        value={result.phishing_analysis.legitimate_probability}
+                        colorClass="bg-green-500"
+                      />
+                      {result.phishing_analysis.threshold_used && (
+                        <div className="flex flex-wrap gap-x-4 gap-y-1 border-t pt-2">
+                          <p className="text-[10px] text-muted-foreground">
+                            <span className="font-medium">Phishing threshold:</span>{" "}
+                            ≥ {(result.phishing_analysis.threshold_used.phishing_above * 100).toFixed(0)}%
+                          </p>
+                          <p className="text-[10px] text-muted-foreground">
+                            <span className="font-medium">Legitimate threshold:</span>{" "}
+                            ≤ {(result.phishing_analysis.threshold_used.legitimate_below * 100).toFixed(0)}%
+                          </p>
+                          <p className="text-[10px] text-muted-foreground">
+                            Between thresholds → <span className="font-medium text-yellow-600 dark:text-yellow-400">SUSPICIOUS</span>
+                          </p>
+                        </div>
+                      )}
 
-                    {/* Synthesis footer */}
-                    <SynthesisFooter result={result} />
+                      {/* Synthesis footer */}
+                      <SynthesisFooter result={result} />
+                    </div>
                   </div>
                 </Panel>
               )}
