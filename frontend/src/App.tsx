@@ -144,7 +144,7 @@ function AgreementBadge({ llmAnalysis }: { llmAnalysis: LlmAnalysis }) {
         ) : (
           <AlertTriangle className="h-3 w-3" />
         )}
-        {isAgree ? "✓ ML & LLM agree" : "⚠ Models disagree"}
+        {isAgree ? "ML & LLM agree" : "Models disagree"}
         {expanded ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
       </button>
 
@@ -761,8 +761,10 @@ export default function App() {
             <div className="flex flex-1 items-center justify-center">
               <LatticeLoader
                 label="Thinking..."
+                pattern="rain"
                 glow
-                showTimer={false}
+                showTimer={true}
+                grid={4}
                 color="currentColor"
                 className="text-muted-foreground"
               />
