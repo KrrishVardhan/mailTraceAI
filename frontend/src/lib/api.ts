@@ -45,6 +45,17 @@ export interface PhishingAnalysis {
   error: string | null;
 }
 
+export interface LlmAnalysis {
+  llm_verdict: "phishing" | "suspicious" | "legitimate" | null;
+  llm_confidence: number | null;
+  reasoning_summary: string;
+  evidence: string[];
+  ml_agreement: "agree" | "disagree" | "partial" | "unavailable";
+  agreement_explanation: string | null;
+  final_recommended_risk_level: "low" | "medium" | "high" | "critical";
+  llm_error?: true;
+}
+
 export interface AnalysisResult {
   headers: {
     from: string | null;
@@ -71,6 +82,8 @@ export interface AnalysisResult {
   geolocation_error?: string;
   origin_assessment?: OriginAssessment;
   phishing_analysis: PhishingAnalysis;
+  llm_analysis: LlmAnalysis;
+  primary_verdict: "low" | "medium" | "high" | "critical" | "unknown";
 }
 
 export async function analyzeEmail(file: File): Promise<AnalysisResult> {

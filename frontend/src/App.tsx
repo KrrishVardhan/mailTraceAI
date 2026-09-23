@@ -2,7 +2,7 @@ import { useRef, useState, type ChangeEvent } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { analyzeEmail, type AnalysisResult } from "@/lib/api"
+import { analyzeEmail, type AnalysisResult, type LlmAnalysis } from "@/lib/api"
 import { IpLocationMap } from "@/components/IpLocationMap"
 import { RelayChainTimeline } from "@/components/RelayChainTimeline"
 import { useTheme } from "@/components/theme-provider"
@@ -30,6 +30,8 @@ import {
   ShieldCheck,
   ShieldQuestion,
   BarChart2,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -53,7 +55,7 @@ function authStatus(result: string) {
 }
 
 function riskStyle(risk: string) {
-  if (risk === "high")
+  if (risk === "high" || risk === "critical")
     return {
       cls: "text-destructive bg-destructive/10 border-destructive/30",
       pulse: true,
@@ -103,9 +105,199 @@ function Panel({
   )
 }
 
-// ── Phishing verdict banner ────────────────────────────────────────────────
+// ── LLM Error notice ──────────────────────────────────────────────────────
 
-function PhishingBanner({ verdict, confidence }: { verdict: string; confidence: number | null }) {
+function LlmErrorNotice() {
+  return (
+    <div className="flex items-center gap-2 rounded-none border border-yellow-500/30 bg-yellow-500/8 px-3 py-2">
+      <AlertTriangle className="h-3.5 w-3.5 shrink-0 text-yellow-600 dark:text-yellow-400" />
+      <p className="text-xs text-yellow-700 dark:text-yellow-300">
+        AI reasoning layer unavailable — showing ML classifier result only.
+      </p>
+    </div>
+  )
+}
+
+// ── Agreement Badge ───────────────────────────────────────────────────────
+
+function AgreementBadge({ llmAnalysis }: { llmAnalysis: LlmAnalysis }) {
+  const [expanded, setExpanded] = useState(false)
+
+  if (llmAnalysis.ml_agreement === "unavailable") return null
+
+  const isAgree = llmAnalysis.ml_agreement === "agree"
+  const isDisagree = llmAnalysis.ml_agreement === "disagree" || llmAnalysis.ml_agreement === "partial"
+
+  return (
+    <div className="flex flex-col gap-1">
+      <button
+        onClick={() => setExpanded((v) => !v)}
+        className={cn(
+          "inline-flex items-center gap-1.5 self-start rounded-none border px-2.5 py-1 text-xs font-medium transition-colors",
+          isAgree
+            ? "border-green-500/40 bg-green-500/10 text-green-700 dark:text-green-400 hover:bg-green-500/20"
+            : "border-yellow-500/40 bg-yellow-500/10 text-yellow-700 dark:text-yellow-400 hover:bg-yellow-500/20"
+        )}
+      >
+        {isAgree ? (
+          <CheckCircle2 className="h-3 w-3" />
+        ) : (
+          <AlertTriangle className="h-3 w-3" />
+        )}
+        {isAgree ? "✓ ML & LLM agree" : "⚠ Models disagree"}
+        {expanded ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
+      </button>
+
+      {expanded && llmAnalysis.agreement_explanation && (
+        <div
+          className={cn(
+            "rounded-none border px-3 py-2 text-xs leading-relaxed",
+            isAgree
+              ? "border-green-500/20 bg-green-500/5 text-green-800 dark:text-green-300"
+              : "border-yellow-500/20 bg-yellow-500/5 text-yellow-800 dark:text-yellow-300"
+          )}
+        >
+          {llmAnalysis.agreement_explanation}
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ── Primary verdict banner (LLM-driven) ────────────────────────────────────
+
+function VerdictBanner({
+  result,
+}: {
+  result: AnalysisResult
+}) {
+  const llm = result.llm_analysis
+
+  // If LLM errored, fall back to the existing ML-only banner behaviour
+  if (llm?.llm_error) {
+    return (
+      <div className="flex flex-col gap-2">
+        <LlmErrorNotice />
+        <MlFallbackBanner
+          verdict={result.phishing_analysis.verdict}
+          confidence={result.phishing_analysis.confidence}
+        />
+      </div>
+    )
+  }
+
+  const verdict = llm?.llm_verdict ?? null
+  const confidence = llm?.llm_confidence ?? null
+  const summary = llm?.reasoning_summary ?? ""
+
+  if (verdict === "phishing") {
+    return (
+      <div className="flex flex-col gap-2">
+        <div className="flex items-start gap-3 rounded-none border border-destructive/40 bg-destructive/10 px-4 py-3">
+          <ShieldAlert className="mt-0.5 h-6 w-6 shrink-0 text-destructive" />
+          <div className="flex-1 space-y-1">
+            <div className="flex items-center gap-2">
+              <p className="text-sm font-bold tracking-wide text-destructive uppercase">
+                Phishing Detected
+              </p>
+              {confidence != null && (
+                <span className="text-xs font-semibold text-destructive/80">
+                  {confidence}% confident
+                </span>
+              )}
+              <span className="relative ml-auto flex h-2.5 w-2.5 shrink-0">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-destructive opacity-50" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-destructive" />
+              </span>
+            </div>
+            {summary && (
+              <p className="text-xs leading-relaxed text-destructive/80">{summary}</p>
+            )}
+          </div>
+        </div>
+        <AgreementBadge llmAnalysis={llm} />
+      </div>
+    )
+  }
+
+  if (verdict === "suspicious") {
+    return (
+      <div className="flex flex-col gap-2">
+        <div className="flex items-start gap-3 rounded-none border border-yellow-500/40 bg-yellow-500/10 px-4 py-3">
+          <ShieldQuestion className="mt-0.5 h-6 w-6 shrink-0 text-yellow-600 dark:text-yellow-400" />
+          <div className="flex-1 space-y-1">
+            <div className="flex items-center gap-2">
+              <p className="text-sm font-bold tracking-wide text-yellow-600 dark:text-yellow-400 uppercase">
+                Suspicious — Review Manually
+              </p>
+              {confidence != null && (
+                <span className="text-xs font-semibold text-yellow-600/80 dark:text-yellow-400/80">
+                  {confidence}% suspicious
+                </span>
+              )}
+              <span className="relative ml-auto flex h-2.5 w-2.5 shrink-0">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-yellow-500 opacity-50" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-yellow-500" />
+              </span>
+            </div>
+            {summary && (
+              <p className="text-xs leading-relaxed text-yellow-700/80 dark:text-yellow-300/80">
+                {summary}
+              </p>
+            )}
+          </div>
+        </div>
+        <AgreementBadge llmAnalysis={llm} />
+      </div>
+    )
+  }
+
+  if (verdict === "legitimate") {
+    return (
+      <div className="flex flex-col gap-2">
+        <div className="flex items-start gap-3 rounded-none border border-green-500/40 bg-green-500/10 px-4 py-3">
+          <ShieldCheck className="mt-0.5 h-6 w-6 shrink-0 text-green-600 dark:text-green-400" />
+          <div className="flex-1 space-y-1">
+            <div className="flex items-center gap-2">
+              <p className="text-sm font-bold tracking-wide text-green-600 dark:text-green-400 uppercase">
+                Appears Legitimate
+              </p>
+              {confidence != null && (
+                <span className="text-xs font-semibold text-green-600/80 dark:text-green-400/80">
+                  {confidence}% confident
+                </span>
+              )}
+            </div>
+            {summary && (
+              <p className="text-xs leading-relaxed text-green-700/80 dark:text-green-300/80">
+                {summary}
+              </p>
+            )}
+          </div>
+        </div>
+        <AgreementBadge llmAnalysis={llm} />
+      </div>
+    )
+  }
+
+  // null / unknown verdict — fall back to ML banner
+  return (
+    <MlFallbackBanner
+      verdict={result.phishing_analysis.verdict}
+      confidence={result.phishing_analysis.confidence}
+    />
+  )
+}
+
+// ── ML-only fallback banner (used when LLM errored or verdict is null) ────
+
+function MlFallbackBanner({
+  verdict,
+  confidence,
+}: {
+  verdict: string
+  confidence: number | null
+}) {
   if (verdict === "PHISHING") {
     return (
       <div className="flex items-center gap-3 rounded-none border border-destructive/40 bg-destructive/10 px-4 py-3">
@@ -115,7 +307,7 @@ function PhishingBanner({ verdict, confidence }: { verdict: string; confidence: 
             Phishing Detected
           </p>
           <p className="text-xs text-destructive/80">
-            Model is {confidence != null ? `${(confidence * 100).toFixed(1)}%` : "—"} confident this email is malicious.
+            ML model is {confidence != null ? `${(confidence * 100).toFixed(1)}%` : "—"} confident this email is malicious.
           </p>
         </div>
         <span className="relative ml-auto flex h-2.5 w-2.5 shrink-0">
@@ -134,7 +326,7 @@ function PhishingBanner({ verdict, confidence }: { verdict: string; confidence: 
             Suspicious — Review Manually
           </p>
           <p className="text-xs text-yellow-600/80 dark:text-yellow-400/80">
-            Model is uncertain ({confidence != null ? `${(confidence * 100).toFixed(1)}%` : "—"} phishing probability). Treat with caution.
+            ML model is uncertain ({confidence != null ? `${(confidence * 100).toFixed(1)}%` : "—"} phishing probability). Treat with caution.
           </p>
         </div>
         <span className="relative ml-auto flex h-2.5 w-2.5 shrink-0">
@@ -153,13 +345,12 @@ function PhishingBanner({ verdict, confidence }: { verdict: string; confidence: 
             Appears Legitimate
           </p>
           <p className="text-xs text-green-600/80 dark:text-green-400/80">
-            Model is {confidence != null ? `${(confidence * 100).toFixed(1)}%` : "—"} confident this is not phishing.
+            ML model is {confidence != null ? `${(confidence * 100).toFixed(1)}%` : "—"} confident this is not phishing.
           </p>
         </div>
       </div>
     )
   }
-  // UNAVAILABLE
   return (
     <div className="flex items-center gap-3 rounded-none border border-border bg-muted/30 px-4 py-3">
       <ShieldQuestion className="h-6 w-6 shrink-0 text-muted-foreground" />
@@ -169,6 +360,67 @@ function PhishingBanner({ verdict, confidence }: { verdict: string; confidence: 
         </p>
         <p className="text-xs text-muted-foreground/70">Model could not be loaded.</p>
       </div>
+    </div>
+  )
+}
+
+// ── AI Reasoning card ─────────────────────────────────────────────────────
+
+function AiReasoningCard({ llmAnalysis }: { llmAnalysis: LlmAnalysis }) {
+  if (llmAnalysis.llm_error) return null
+
+  const hasEvidence =
+    llmAnalysis.evidence.length > 0 &&
+    !(llmAnalysis.evidence.length === 1 && llmAnalysis.evidence[0] === "no significant indicators found")
+
+  return (
+    <Panel title="AI Reasoning" icon={<BrainCircuit className="h-3.5 w-3.5" />}>
+      <ul className="space-y-1.5">
+        {hasEvidence ? (
+          llmAnalysis.evidence.map((item, i) => (
+            <li key={i} className="flex items-start gap-2 text-xs text-foreground">
+              <span className="mt-0.5 shrink-0 text-muted-foreground">•</span>
+              <span>{item}</span>
+            </li>
+          ))
+        ) : (
+          <li className="flex items-start gap-2 text-xs text-muted-foreground">
+            <CheckCircle2 className="mt-0.5 h-3 w-3 shrink-0 text-green-500" />
+            No significant indicators found
+          </li>
+        )}
+      </ul>
+    </Panel>
+  )
+}
+
+// ── Synthesis footer ──────────────────────────────────────────────────────
+
+function SynthesisFooter({ result }: { result: AnalysisResult }) {
+  const llm = result.llm_analysis
+  if (llm?.llm_error || !llm?.agreement_explanation) return null
+
+  // Look for a geolocation masking note to include
+  const maskingNote = result.geolocation
+    .find((g) => g.status === "success" && g.masking?.likely_masked)
+    ?.masking?.note
+
+  const agreementLabel =
+    llm.ml_agreement === "agree"
+      ? `LLM and ML agree (${llm.llm_confidence ?? "—"}%)`
+      : llm.ml_agreement === "partial"
+        ? `LLM and ML partially agree (${llm.llm_confidence ?? "—"}%)`
+        : `LLM and ML disagree (${llm.llm_confidence ?? "—"}% LLM confidence)`
+
+  const parts = [agreementLabel]
+  if (maskingNote) parts.push(maskingNote)
+
+  return (
+    <div className="flex items-start gap-2 border-t pt-2">
+      <Info className="mt-0.5 h-3 w-3 shrink-0 text-muted-foreground" />
+      <p className="text-[11px] leading-relaxed text-muted-foreground">
+        {parts.join("; ")}
+      </p>
     </div>
   )
 }
@@ -496,7 +748,7 @@ export default function App() {
         </aside>
 
         {/* ════════════════════════════════════════════════════════════════
-            CENTER — ML investigation results
+            CENTER — LLM + ML investigation results
             ════════════════════════════════════════════════════════════════ */}
         <main className="flex min-w-0 flex-1 flex-col gap-2 overflow-y-auto p-2">
           {error && (
@@ -524,17 +776,19 @@ export default function App() {
           ) : (
             <AnimatedContent distance={16} direction="vertical" duration={0.4} delay={0.1} threshold={0} className="flex flex-col gap-2">
 
-              {/* ── Verdict banner ── */}
+              {/* ── Primary verdict banner (LLM-driven, ML fallback) ── */}
               {result.phishing_analysis && (
-                <PhishingBanner
-                  verdict={result.phishing_analysis.verdict}
-                  confidence={result.phishing_analysis.confidence}
-                />
+                <VerdictBanner result={result} />
               )}
 
-              {/* ── ML probability breakdown ── */}
+              {/* ── AI Reasoning card (evidence bullet points) ── */}
+              {result.llm_analysis && !result.llm_analysis.llm_error && (
+                <AiReasoningCard llmAnalysis={result.llm_analysis} />
+              )}
+
+              {/* ── ML Classifier (supporting signal) ── */}
               {result.phishing_analysis && result.phishing_analysis.verdict !== "UNAVAILABLE" && (
-                <Panel title="ML Confidence Breakdown" icon={<BarChart2 className="h-3.5 w-3.5" />}>
+                <Panel title="ML Classifier (supporting signal)" icon={<BarChart2 className="h-3.5 w-3.5" />}>
                   <div className="space-y-3">
                     {result.phishing_analysis.phishing_probability != null && (
                       <div className="mx-auto w-full max-w-sm">
@@ -587,31 +841,12 @@ export default function App() {
                         </p>
                       </div>
                     )}
+
+                    {/* Synthesis footer */}
+                    <SynthesisFooter result={result} />
                   </div>
                 </Panel>
               )}
-
-              {/* ── Model info ── 
-              <Panel title="Model" icon={<BrainCircuit className="h-3.5 w-3.5" />}>
-                <div className="space-y-2 text-xs text-muted-foreground">
-                  <p>
-                    Logistic Regression trained on{" "}
-                    <span className="font-medium text-foreground">82,486 emails</span> from 6 datasets
-                    (CEAS, Enron, Ling, Nazario, SpamAssassin, Nigerian Fraud).
-                  </p>
-                  <p>
-                    Uses a hybrid feature matrix:{" "}
-                    <span className="font-medium text-foreground">TF-IDF</span> (10k token n-grams) +{" "}
-                    <span className="font-medium text-foreground">32 structural signals</span> including
-                    URL count, urgency phrase density, sender domain mismatch, HTML tag analysis,
-                    and SPF/DKIM behavioral indicators.
-                  </p>
-                  <p className="border-t pt-2 text-[10px]">
-                    <span className="font-medium">Test-set accuracy: 99%</span> · The model does not replace
-                    manual forensic review — treat the SUSPICIOUS band as a prompt for deeper analysis.
-                  </p>
-                </div>
-              </Panel>*/}
 
               {/* ── Geolocation metadata (non-map) ── */}
               {result.geolocation.some((g) => g.status === "success") && (
