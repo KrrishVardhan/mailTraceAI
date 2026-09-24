@@ -1,19 +1,31 @@
+import hashlib
+
 from fastapi import APIRouter, UploadFile, File, HTTPException
+from fastapi import Request
 
 from email_forensics import analyze_eml, assess_origin_masking, synthesize_origin_assessment
 from geolocation import geolocate_ips
 from phishing_classifier import classify_email
 from llm_verdict import get_llm_verdict, _extract_body_from_bytes
+from db.database import get_cached_result, get_case, list_cases, store_analysis
 
 router = APIRouter()
 
 
 @router.post("/analyze-email")
-async def analyze_email(file: UploadFile = File(...)):
+async def analyze_email(request: Request, file: UploadFile = File(...)):
     if not file.filename.endswith(".eml"):
         raise HTTPException(400, "Please upload a .eml file")
 
     raw_bytes = await file.read()
+    email_hash = hashlib.sha256(raw_bytes).hexdigest()
+    cached_result = get_cached_result(
+        getattr(request.app.state, "db_pool", None),
+        email_hash,
+    )
+    if cached_result is not None:
+        cached_result["cached"] = True
+        return cached_result
 
     # --- Header forensics ---
     try:
@@ -71,4 +83,30 @@ async def analyze_email(file: UploadFile = File(...)):
             result["phishing_analysis"].get("risk_level", "unknown"),
         )
 
+    result["cached"] = False
+    store_analysis(
+        getattr(request.app.state, "db_pool", None),
+        email_hash=email_hash,
+        filename=file.filename,
+        result=result,
+    )
+    return result
+
+
+@router.get("/cases")
+def cases(request: Request, limit: int = 20):
+    return list_cases(
+        getattr(request.app.state, "db_pool", None),
+        max(1, min(limit, 100)),
+    )
+
+
+@router.get("/cases/{case_id}")
+def case(case_id: int, request: Request):
+    result = get_case(
+        getattr(request.app.state, "db_pool", None),
+        case_id,
+    )
+    if result is None:
+        raise HTTPException(404, "Analysis case not found")
     return result
