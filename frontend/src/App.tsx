@@ -461,11 +461,13 @@ function ProbBar({
 }
 
 const electricLogoPalettes = [
-  { color: "#84CC16", glowColor: "#84CC16" },
-  { color: "#22C55E", glowColor: "#16A34A" },
-  { color: "#14B8A6", glowColor: "#0D9488" },
-  { color: "#06B6D4", glowColor: "#0891B2" },
-  { color: "#A3E635", glowColor: "#65A30D" },
+  { color: "#00F5FF", glowColor: "#0891B2" }, // Cyan
+  { color: "#7C3AED", glowColor: "#5B21B6" }, // Violet
+  { color: "#FF2D95", glowColor: "#DB2777" }, // Magenta
+  { color: "#FFB000", glowColor: "#D97706" }, // Amber
+  { color: "#00FF87", glowColor: "#16A34A" }, // Matrix Green
+  { color: "#FF4757", glowColor: "#DC2626" }, // Alert Red
+  { color: "#38BDF8", glowColor: "#0284C7" }, // Sky
 ]
 
 function RotatingElectricLogo({ isDark }: { isDark: boolean }) {
@@ -524,7 +526,7 @@ function LandingPage({
 }) {
   return (
     <div className="min-h-screen overflow-auto bg-background text-foreground">
-      <header className="mx-auto flex h-16 max-w-6xl items-center justify-between border-b px-5 lg:px-8">
+      <header className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 lg:px-8">
         <div className="flex items-center gap-2.5">
           <div className="flex h-8 w-8 items-center justify-center bg-foreground text-background">
             <Mail className="h-4 w-4" />
