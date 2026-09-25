@@ -1,7 +1,9 @@
-import { useRef, useState, type ChangeEvent } from "react"
+import { useEffect, useRef, useState, type ChangeEvent } from "react"
+import logoUrls from "virtual:mailtrace-logo-manifest"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { analyzeEmail, type AnalysisResult, type LlmAnalysis } from "@/lib/api"
 import { IpLocationMap } from "@/components/IpLocationMap"
 import { RelayChainTimeline } from "@/components/RelayChainTimeline"
@@ -10,6 +12,7 @@ import BlurText from "@/components/BlurText"
 import ShinyText from "@/components/ShinyText"
 import AnimatedContent from "@/components/AnimatedContent"
 import LatticeLoader from "@/components/LatticeLoader"
+import ElectricLogo from "@/components/ElectricLogo"
 import { Gauge } from "@/components/charts/gauge"
 import {
   Upload,
@@ -33,6 +36,10 @@ import {
   BarChart2,
   ChevronDown,
   ChevronUp,
+  ArrowRight,
+  FileSearch,
+  Fingerprint,
+  Database,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -453,6 +460,166 @@ function ProbBar({
   )
 }
 
+const electricLogoPalettes = [
+  { color: "#84CC16", glowColor: "#84CC16" },
+  { color: "#22C55E", glowColor: "#16A34A" },
+  { color: "#14B8A6", glowColor: "#0D9488" },
+  { color: "#06B6D4", glowColor: "#0891B2" },
+  { color: "#A3E635", glowColor: "#65A30D" },
+]
+
+function RotatingElectricLogo({ isDark }: { isDark: boolean }) {
+  const [logoIndex, setLogoIndex] = useState(0)
+  const [paletteIndex, setPaletteIndex] = useState(0)
+
+  useEffect(() => {
+    if (logoUrls.length < 2) return
+
+    const interval = window.setInterval(() => {
+      setLogoIndex((current) => (current + 1) % logoUrls.length)
+      setPaletteIndex(
+        (current) => (current + 1) % electricLogoPalettes.length
+      )
+    }, 3000)
+
+    return () => window.clearInterval(interval)
+  }, [])
+
+  const palette = electricLogoPalettes[paletteIndex]
+
+  return (
+    <ElectricLogo
+      src={logoUrls[logoIndex]}
+      color={palette.color}
+      glowColor={palette.glowColor}
+      scale={0.7}
+      strands={3}
+      bend={0.6}
+      crackle={1.5}
+      arcs={0}
+      speed={1.5}
+      interactive
+      intensity={1}
+      glow={0.3}
+      thickness={0.5}
+      flicker={0.1}
+      fill={0}
+      cursorIntensity={0.75}
+      cursorRadius={100}
+      theme={isDark ? "dark" : "light"}
+    />
+  )
+}
+
+function LandingPage({
+  isDark,
+  onThemeToggle,
+  onOpenAnalyzer,
+  onGoHome,
+}: {
+  isDark: boolean
+  onThemeToggle: () => void
+  onOpenAnalyzer: () => void
+  onGoHome: () => void
+}) {
+  return (
+    <div className="min-h-screen overflow-auto bg-background text-foreground">
+      <header className="mx-auto flex h-16 max-w-6xl items-center justify-between border-b px-5 lg:px-8">
+        <div className="flex items-center gap-2.5">
+          <div className="flex h-8 w-8 items-center justify-center bg-foreground text-background">
+            <Mail className="h-4 w-4" />
+          </div>
+          <button
+            type="button"
+            onClick={onGoHome}
+            className="text-sm font-semibold tracking-tight"
+          >
+            mailTraceAI
+          </button>
+        </div>
+        <Button variant="ghost" size="icon" onClick={onThemeToggle} aria-label="Toggle theme">
+          {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+        </Button>
+      </header>
+
+      <main className="mx-auto max-w-6xl px-5 py-16 lg:px-8 lg:py-24">
+        <div className="grid items-center gap-10 lg:grid-cols-[1fr_0.85fr]">
+          <section className="max-w-2xl">
+            <div className="mb-5 inline-flex items-center gap-2 border border-border bg-card px-3 py-1.5 text-xs text-muted-foreground">
+              <ShieldCheck className="h-3.5 w-3.5 text-green-600 dark:text-green-400" />
+              Email forensics, made clear
+            </div>
+            <h1 className="text-4xl leading-tight font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+              Trace the signals behind every email.
+            </h1>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
+              mailTraceAI turns a raw <span className="font-mono text-sm">.eml</span> file into a focused investigation. Inspect authentication, relay infrastructure, phishing signals, and AI reasoning in one place.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Button size="lg" onClick={onOpenAnalyzer}>
+                Open analyzer
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+              <span className="text-xs text-muted-foreground">Upload stays in your investigation workspace</span>
+            </div>
+          </section>
+
+          <div className="h-72 w-full sm:h-96 lg:h-105">
+            <RotatingElectricLogo isDark={isDark} />
+          </div>
+        </div>
+
+        <Card className="mt-14 border-border bg-card shadow-lg">
+            <CardHeader className="border-b">
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-xs tracking-widest text-muted-foreground uppercase">
+                  Investigation flow
+                </CardTitle>
+                <span className="h-2 w-2 animate-pulse bg-green-500" />
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-3 pt-5">
+              {[
+                { icon: FileSearch, label: "Parse the raw message", detail: "Headers, MIME body, and received hops" },
+                { icon: Fingerprint, label: "Verify the evidence", detail: "SPF, DKIM, DMARC, and origin signals" },
+                { icon: BrainCircuit, label: "Synthesize a verdict", detail: "ML probability plus Groq-powered reasoning" },
+                { icon: Database, label: "Keep the case available", detail: "Cached results and investigation history" },
+              ].map(({ icon: Icon, label, detail }, index) => (
+                <div key={label} className="flex items-start gap-3 border-b pb-3 last:border-0 last:pb-0">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center border bg-background text-muted-foreground">
+                    <Icon className="h-4 w-4" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium">
+                      <span className="mr-2 font-mono text-xs text-muted-foreground">0{index + 1}</span>
+                      {label}
+                    </p>
+                    <p className="mt-0.5 text-xs text-muted-foreground">{detail}</p>
+                  </div>
+                </div>
+              ))}
+            </CardContent>
+        </Card>
+
+        <div className="mt-20 grid gap-3 border-t pt-6 sm:grid-cols-3">
+          <div>
+            <p className="text-sm font-medium">Header intelligence</p>
+            <p className="mt-1 text-xs leading-relaxed text-muted-foreground">Understand where a message travelled and which checks passed.</p>
+          </div>
+          <div>
+            <p className="text-sm font-medium">Two-layer analysis</p>
+            <p className="mt-1 text-xs leading-relaxed text-muted-foreground">Compare the local phishing classifier with an LLM investigation.</p>
+          </div>
+          <div>
+            <p className="text-sm font-medium">Built for review</p>
+            <p className="mt-1 text-xs leading-relaxed text-muted-foreground">Return to previous cases without running the analysis again.</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  )
+}
+
 // ── main component ─────────────────────────────────────────────────────────
 
 export default function App() {
@@ -460,6 +627,7 @@ export default function App() {
   const [result, setResult] = useState<AnalysisResult | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [route, setRoute] = useState(() => window.location.pathname)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const { theme, setTheme } = useTheme()
 
@@ -467,6 +635,17 @@ export default function App() {
     theme === "dark" ||
     (theme === "system" &&
       window.matchMedia("(prefers-color-scheme: dark)").matches)
+
+  useEffect(() => {
+    const handlePopState = () => setRoute(window.location.pathname)
+    window.addEventListener("popstate", handlePopState)
+    return () => window.removeEventListener("popstate", handlePopState)
+  }, [])
+
+  const navigate = (path: string) => {
+    window.history.pushState({}, "", path)
+    setRoute(path)
+  }
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFile(e.target.files?.[0] ?? null)
@@ -490,11 +669,28 @@ export default function App() {
 
   const risk = result ? riskStyle(result.authentication.risk_level) : null
 
+  if (route === "/" || route === "") {
+    return (
+      <LandingPage
+        isDark={isDark}
+        onThemeToggle={() => setTheme(isDark ? "light" : "dark")}
+        onOpenAnalyzer={() => navigate("/analyse")}
+        onGoHome={() => navigate("/")}
+      />
+    )
+  }
+
   return (
     <div className="flex h-screen w-screen flex-col overflow-hidden bg-background text-foreground">
       {/* ── top bar ─────────────────────────────────────────────────────── */}
       <header className="flex h-12 shrink-0 items-center justify-between gap-3 border-b bg-card px-4">
         <div className="flex items-center gap-2.5">
+        <button
+          type="button"
+          onClick={() => navigate("/")}
+          className="flex items-center gap-2.5"
+          aria-label="Go to mailTraceAI home"
+        >
           <div className="flex h-7 w-7 items-center justify-center rounded-none bg-foreground text-background">
             <Mail className="h-4 w-4" />
           </div>
@@ -505,6 +701,7 @@ export default function App() {
             delay={60}
             direction="top"
           />
+        </button>
           <span className="hidden sm:flex">
             <ShinyText
               text="Forensics Dashboard"
